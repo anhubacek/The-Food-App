@@ -11,13 +11,14 @@ module.exports = (sequelize) => {
     id: {
       type:DataTypes.UUIDV1,
       defaultValue: true,
+      primaryKey: true,
     },
     resume: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
     score: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     healthy: {
@@ -32,9 +33,14 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    // diet: {
+    //   type: DataTypes.ENUM('Vegetarian', 'Vegan', 'Gluten-Free', 'Dairy-Free', 'Lacto-Ovo-Vegetarian'),
+    //   allowNull: false,
+    // },
     created: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
+      defaultValue: false,
     },
   });
 };
