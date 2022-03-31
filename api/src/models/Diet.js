@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('recipe', {
+    sequelize.define('diet', {
       name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -9,8 +9,3 @@ module.exports = (sequelize) => {
     });
   };
   
-
-//   "gluten free",
-//   "dairy free",
-//   "lacto ovo vegetarian",
-//   "vegan"

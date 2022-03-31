@@ -9,9 +9,10 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     id: {
-      type:DataTypes.UUIDV1,
-      defaultValue: true,
+      type:DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
+      allowNull: false,
     },
     resume: {
       type: DataTypes.TEXT,
@@ -19,11 +20,11 @@ module.exports = (sequelize) => {
     },
     score: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
-    healthy: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
+    healthScore: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
     },
     image: {
       type: DataTypes.STRING,
@@ -33,15 +34,12 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    // diet: {
-    //   type: DataTypes.ENUM('Vegetarian', 'Vegan', 'Gluten-Free', 'Dairy-Free', 'Lacto-Ovo-Vegetarian'),
-    //   allowNull: false,
-    // },
     created: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
+      allowNull: true,
       defaultValue: false,
     },
+    // timestamps: false
   });
 };
 

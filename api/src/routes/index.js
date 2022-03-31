@@ -1,12 +1,8 @@
 const { Router } = require('express');
 // Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
+//const authRouter = require('./auth.js');
 const axios = require('axios');
-const Diets = require('../models/Diets');
-const { TimeoutError } = require('sequelize/types');
-const Recipe = require('../models/Recipe');
-
-
+const {Diet, Recipe} = require('../db')
 const {
     API_KEY
   } = process.env;
@@ -14,115 +10,205 @@ const {
 const router = Router();
 
 // Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
+// router.use('/auth', authRouter);
+// router.use(bodyParser.json());
+// router.use(bodyParser.urlencoded({ extended: true }));
 
+
+//TRAIGO LA DATA DE LA API//
 const getApiData = async () => {
-  const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
-  const apiData = apiUrl.map( e => { // el map recorre todas las recetas y
-    return {            // me devuelve un arreglo solo con los datos que necesito de la api
-          title: e.title,
-          id: e.id,
-          resume: e.summary,
-          score: e.spoonacularScore,
-          healthy: e.veryHealthy,
-          image: e.image,
-          instructions: e.analyzedInstructions,
-    };
-  }) 
+  try{
+      const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true`)
+    
+    const apiData = apiUrl.data.results.map( e => { // el map recorre todas las recetas y
+      return {            // me devuelve un arreglo solo con los datos que necesito de la api
+            title: e.title,
+            id: e.id,
+            resume: e.summary,
+            score: e.spoonacularScore,
+            healthScore: e.healthScore,
+            image: e.image,
+            instructions:e.analyzedInstructions? e.analyzedInstructions.map(e =>e.steps.map(e =>{
+                return e.number + ' ' + e.step
+              })
+              
+            ): 'No hay paso a paso'
+      };
+      
+    }); return apiData
+  }
+  catch(e){
+    console.log('Error en el llamado a la api' + (e))
+  }
 };
 
+//TRAIGO LA DATA DE LA BASE DE DATOS//
 const getDbData = async () => {
-  const dbData = await Recipe.findAll({
-    include: [
-      {model: Diets,
-      attributes: 'name'},
-      through={  
-        attributes: []
-      },
-    ]               // me devuelve todo lo q hay en la base de datos de receta
-  })              // e incluye los tipos de dieta de cada una
-  return dbData;
+  try{
+    const dbData = await Recipe.findAll 
+      ({ include: {model: Diet, attributes: ['name'], through: { attributes: [] }} });
+
+        return dbData;
+  }
+  catch(e) {
+    console.log('Error en llamado a la BD' + (e))
+  }
+
 };
 
+
+//TRAIGO LA DATA DE API Y BASE DE DATOS//
 const getTotalRecipes = async () => {
   const getApiInfo = await getApiData() // traigo la info de la api
   const getDbInfo = await getDbData() // traigo la info de la DB
   return getApiInfo.concat(getDbInfo) //retorno la info total
-};  //
+ 
+};  
 
 
 
 
-// router.get('/recipes', async (req,res) => {
-//   const allRecipes = await getTotalRecipes()
-//   res.status(200).send(allRecipes)  
-// })
 
 
-router.get('/recipes?name=', async (req,res) => {
-  const {name} = req.query        //
-  const allRecipes = await getTotalRecipes() //las paso a minuscula para comparar si son iguales
-  const nameRecipe = allRecipes.filter(e => e.name.toLowerCase.includes(name.toLocaleLowerCase))
-  if (nameRecipe) {
-    res.status(200).send(nameRecipe)
-  } else {
-    res.status(404).send('Recipe not found')
-  }
-})
 
+
+//////////////////////////////////// R U T A S ////////////////////////////////////////////////
+
+//FUNCIONA- 
+ router.get('/allrecipes', async (req,res) => {
+   const allRecipes = await getTotalRecipes()
+   res.status(200).send(allRecipes) 
+   
+ })
+
+
+//FUNCIONA- PERO HAY QUE VER TEMA MAYUSCULAS Y MINUSCULAS
+router.get('/recipes', async (req,res) => {
+  const {name} = req.query       
+  try {
+  const allRecipes = await getTotalRecipes() 
+  const nameRecipe = allRecipes.filter(e => (e.title.includes(name)))
+  res.status(200).send(nameRecipe)
+}
+catch(e){
+  console.log('error al buscar la receta' + e)
+}
+});
+
+
+
+
+//FUNCIONA-
 router.get('/recipes/:idRecipe', async (req,res) => {
   const {idRecipe} = req.params
-  const allRecipes = await getTotalRecipes()
-  const nameRecipe = allRecipes.filter(e => e.id.toLowerCase === idRecipe)
-  if (nameRecipe) {
-    res.status(200).send(nameRecipe)
-  } else {
-    res.status(404).send('Recipe not found')
+  try {
+    const idRecipeApi = await axios.get(`https://api.spoonacular.com/recipes/${idRecipe}/information?apiKey=${API_KEY}`)
+
+      const recipeId= {            
+            title: idRecipeApi.data.title,
+            id: idRecipeApi.data.id,
+            resume: idRecipeApi.data.summary,
+            score: idRecipeApi.data.spoonacularScore,
+            healthScore: idRecipeApi.data.healthScore,
+            image: idRecipeApi.data.image,
+            instructions:idRecipeApi.data.analyzedInstructions? idRecipeApi.data.analyzedInstructions.map(e =>e.steps.map(e =>{
+              return e.number + ' ' + e.step
+            })): 'No hay paso a paso'
+    };
+      
+    res.status(200).send(recipeId)
   }
+  catch(e) {
+    console.log("Error al buscar receta por ID" + e)
+  }
+});
+
+
+
+// HASTA AHORA TRAE UN ARRAY CON DIETAS EN LA API
+router.get('/types' , async (req, res) => {
+  try{
+    const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true`)
+  
+  const apiData = apiUrl.data.results.map( e => { 
+    return  e.diets
+  });
+  const data = apiData.flat(1) 
+
+  const cleanData = data.filter((value, i) => {
+    return data.indexOf(value) === i;
+  }
+);
+  res.status(200).send(cleanData)
+}
+catch(e){
+  console.log('Error en el llamado a la api' + (e))
+}
 })
 
-router.get('/types' , async (req, res) => {
-  const allRecipes = await getTotalRecipes()
-  const types = allRecipes.map( e => e.diets) //entro a la prop diets de cada receta
-  const types2 = types.forEach(e => {  //dentro e cada diets lo mapeo
-      Diets.findOrCreate({    //y por cada elemento me fijo si esta y sino se crea en DB
-        where: {name: e}  // la prop name de la DB pasa a ser el elemento
-      })
+
+
+const getDietType = async () => {
+  try{
+    let dbTypes = await Diet.findAll();
+    if (!dbTypes) {
+        const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true`)
+      
+      const apiData = apiUrl.data.results.map( e =>  e.diets );
+      const data = apiData.flat(1) 
+      const cleanData = data.filter((value, i) => data.indexOf(value) === i);
+      
+        await Diet.bulkCreate(cleanData);
+        return cleanData
+      
+    }
+    return(dbTypes)
+  }
     
-  })
-  const allTypes = await Diets.findAll()
-  res.status(200).send(allTypes)
-})
+  catch(e){
+  console.log('Error en el llamado a la api' + (e))
+  }
+}
+
+
 
 router.post('/recipe', async (req, res) => {
+  
   const {title, resume, image, instructions, diet} = req.body
-  if (title, resume, image, instructions, diet){
-    const recipecreated = await Recipe.findOrCreate({
-      title, 
-      resume, 
-      image, 
-      instructions, 
-    })
-    const dietType = await Recipe.findAll({
-      where: {name:diet }
-    })
-    res.status(200).json(await recipecreated.addDiets[dietType.id])
+  try{
+    if (title, resume, image, instructions, diet){
+      const recipecreated = await Recipe.findOrCreate({
+        where: { title:title},
+        defaults:{ 
+        resume, 
+        image, 
+        instructions, 
+      }
+      }
+      )
+      let dietType = await Diet.findAll({
+        where: {name:diet }
+      })
+      console.log(dietType)
 
-    
-  } else {
-    res.status(404).send('Please complete all fields')
+      const finalRecipe  = await recipecreated .addDiet([dietType])
+      console.log(finalRecipe)
+      res.status(200).send(finalRecipe)
+  
+      
+    } else {
+      res.status(404).send('Please complete all fields')
+    }
   }
+  catch(e) {
+    console.log('error en el post' + (e))
+  }
+  
 })
-
-
-
-
-
-
 
 module.exports = router;
 
 
 
 
-// https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true
+// https://api.spoonacular.com/recipes/complexSearch?apiKey=ff267bd13730442abb449845b729d555&addRecipeInformation=true
