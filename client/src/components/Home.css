@@ -1,0 +1,61 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    height: 800px;
+    background-color: bisque;
+    color: black;
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: auto;
+    height: 100px;
+    background-color: rgb(214, 201, 53);
+    color:black
+}
+
+.pages {
+    width: 80%;
+    height: 900px;
+    background-color: rgb(119, 83, 136);
+    align-self: center;
+    margin-top: 5px;
+}
+
+.searchbar {
+    width: 80%;
+    height: 70px;
+    background-color: rgb(119, 83, 136);
+    align-self: center;
+    margin-top: 5px;
+    align-items: center;
+
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Oleo Script Swash Caps', cursive;
+    font-size: 65px;
+    color: rgba(246, 246, 242, 0.905);
+    /* background-color:rgba(12, 12, 12, 0.3) ; */
+    -webkit-text-stroke:  0.5px rgb(24, 31, 29);
+    text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.45);
+    
+    
+}
+
+h4 {
+    text-align: center;
+    font-family: 'Oleo Script Swash Caps', cursive;
+    font-size: 40px;
+    color: rgba(246, 246, 244, 0.785);
+    /* background-color:rgba(12, 12, 12, 0.3) ; */
+    text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.686);
+    -webkit-text-stroke:  0.5px rgb(17, 22, 21);
+
+    
+}

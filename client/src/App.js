@@ -2,6 +2,7 @@ import './App.css';
 import { BrowserRouter,  Route, Routes } from 'react-router-dom';
 import Landing from './components/Landing.js';
 import Home from './components/Home.js';
+import RecipeForm from './components/RecipeForm.js';
 
 
 function App() {
@@ -9,9 +10,6 @@ function App() {
    
     <BrowserRouter>
         <Routes> 
-            {/* <div className="App">
-              <h1>Henry Food</h1>
-            </div> */}
             <Route 
             exact path='/'
             element= {<Landing/>}
@@ -19,7 +17,11 @@ function App() {
             <Route 
             exact path='/home'
             element= {<Home/>} 
-            />   
+            />  
+             <Route 
+            exact path='/create'
+            element= {<RecipeForm/>} 
+            />  
       </Routes>
   </BrowserRouter>
 
