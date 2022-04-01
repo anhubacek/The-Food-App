@@ -1,0 +1,10 @@
+.cardContainer {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 260px;
+    background-color: rgba(210, 202, 202, 0.803);
+    color: black;
+    font-family:serif;
+    font-size: 15px;
+}

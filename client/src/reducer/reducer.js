@@ -4,7 +4,7 @@ let initialState = {
     recipe: {}
 }
 
-export const rootReducer = (state= initialState, action)=> { 
+function rootReducer (state= initialState, action){ 
   switch(action.type) {
     case 'GET_ALL_RECIPES':
         return {

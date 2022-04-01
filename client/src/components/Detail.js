@@ -1,24 +1,29 @@
 import React from "react";
-import {useState, useEffect} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import './Detail.css'
+
+import './Home.css'
+import {Link} from 'react-router-dom'
 
 export default function Detail() {
 
-    
+
     return (
         <div className= 'container'>
             <div className ='nav'>
-           <div className='title'> ACA VA EL TITULO </div>
-            <div className='links'>aca va crear receta</div>
+            <Link to='/home'>
+           <div className='title'> <h2>The Food App</h2></div>
+           </Link>
+            <div className='links'>
+            <Link to='/create'>
+            <h5>Create Recipe</h5>
+            </Link>
+            </div>
 
             </div>
-          <div className="searchbar">
-              ACA VA LA SEARCHBAR
-          </div>
+          {/* <div className="searchbar">
+              <SearchBar/>
+          </div> */}
             <div className='pages'>
-
-            ACA VA el detalle de la receta
+           
             </div>
             
 
