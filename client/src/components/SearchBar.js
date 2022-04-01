@@ -15,16 +15,17 @@ export default function SearchBar() {
                 <option>Z - A</option>
             </select>
             <select className="diet"placeholder="Diet">
-                <option></option>
-                <option></option>
-                <option></option>
-                <option></option>
-                <option></option>
-                <option></option>
-                <option></option>
-                <option></option>
-                <option></option>
-                <option></option>
+                <option>All</option>
+                <option>Vegetarian</option>
+                <option>Ovo-Vegatarian</option>
+                <option>Lacto-Vegetarian</option>
+                <option>Vegan</option>
+                <option>Gluten Free</option>
+                <option>Pescetarian</option>
+                <option>Paleo</option>
+                <option>Primal</option>
+                <option>Low FODMAP</option>
+                <option>Whole30</option>
             </select>
             <select className="type">
                 <option>All</option>
@@ -32,8 +33,8 @@ export default function SearchBar() {
                 <option>Created</option>
             </select>
             <select className="score">
-                <option>Hight</option>
-                <option>Low</option>
+                <option>Highest Score</option>
+                <option>Lowest Score</option>
             </select>
 
             

@@ -14,8 +14,8 @@ export default function Home() {
     return (
         <div className= 'container'>
             <div className ='nav'>
-           <div className='title'> <h1>The Food App</h1></div>
-            <div className='links'><h4>Create Recipe</h4></div>
+           <div className='title'> <h2>The Food App</h2></div>
+            <div className='links'><h5>Create Recipe</h5></div>
 
             </div>
           <div className="searchbar">

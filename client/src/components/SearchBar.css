@@ -2,7 +2,6 @@
     display:flex;
     flex-direction: row;
     justify-content: space-evenly;
-    background-color: rgb(119, 83, 136);
     align-self: center;
     align-items:center;
     padding-top: 6px;
@@ -14,11 +13,12 @@ input {
     width: 300px;
     height: 30px;
     border-radius: 5px; 
+    font-size: 16px;
  
  
 }
 .az{
-    width: 70px;
+    width: 60px;
     height: 32px;
     border-radius: 5px;
     
@@ -31,7 +31,7 @@ input {
 }
 
 .score {
-    width: 70px;
+    width: 120px;
     height: 32px;
     border-radius: 5px;
 }
@@ -43,9 +43,19 @@ input {
 }
 button {
     width: 100px;
-    height: 35px;
+    height: 37px;
     border-radius: 5px; 
-
+    background-color: rgba(8, 21, 16, 0.904);
+    color: beige;
     margin-right: 30px;
     font-size: 18px;
+}
+button:hover {
+    background-color:rgba(245, 245, 220, 0.914);
+    color: rgb(4, 13, 9);
+    cursor: pointer;
+}
+
+option {
+    font-size: 15px;
 }
