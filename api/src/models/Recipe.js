@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     id: {
-      type:DataTypes.UUID,
+      type:DataTypes.INTEGER,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
       allowNull: false,
@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
     },
     instructions: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      allowNull: true,
     },
     created: {
       type: DataTypes.BOOLEAN,

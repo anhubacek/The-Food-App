@@ -8,11 +8,23 @@ const {
   } = process.env;
 
 const router = Router();
+const bodyParser = require('body-parser')
 
 // Configurar los routers
 // router.use('/auth', authRouter);
-// router.use(bodyParser.json());
-// router.use(bodyParser.urlencoded({ extended: true }));
+
+// parse application/x-www-form-urlencoded
+router.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+router.use(bodyParser.json())
+
+router.use(function (req, res) {
+  res.setHeader('Content-Type', 'text/plain')
+  res.write('you posted:\n')
+  res.end(JSON.stringify(req.body, null, 2))
+})
+
 
 
 //TRAIGO LA DATA DE LA API//
@@ -20,22 +32,23 @@ const getApiData = async () => {
   try{
       const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true`)
     
-    const apiData = apiUrl.data.results.map( e => { // el map recorre todas las recetas y
-      return {            // me devuelve un arreglo solo con los datos que necesito de la api
+    const apiData = apiUrl.data.results.map( e => {
+      return {         
             title: e.title,
             id: e.id,
             resume: e.summary,
             score: e.spoonacularScore,
             healthScore: e.healthScore,
             image: e.image,
-            instructions:e.analyzedInstructions? e.analyzedInstructions.map(e =>e.steps.map(e =>{
+            instructions:e.analyzedInstructions.length? e.analyzedInstructions.map(e =>e.steps.map(e =>{
                 return e.number + ' ' + e.step
               })
               
             ): 'No hay paso a paso'
       };
       
-    }); return apiData
+    }); await Recipe.bulkCreate(apiData)
+    return apiData
   }
   catch(e){
     console.log('Error en el llamado a la api' + (e))
@@ -139,7 +152,11 @@ router.get('/types' , async (req, res) => {
     return data.indexOf(value) === i;
   }
 );
-  res.status(200).send(cleanData)
+const cleanData2 = cleanData.map( e => {
+  return {name: e}
+})
+  await Diet.bulkCreate(cleanData2)
+  res.status(200).send(cleanData2)
 }
 catch(e){
   console.log('Error en el llamado a la api' + (e))
@@ -157,9 +174,11 @@ const getDietType = async () => {
       const apiData = apiUrl.data.results.map( e =>  e.diets );
       const data = apiData.flat(1) 
       const cleanData = data.filter((value, i) => data.indexOf(value) === i);
-      
-        await Diet.bulkCreate(cleanData);
-        return cleanData
+      const cleanData2 = cleanData.map( e => {
+        return {name: e}
+      })
+        await Diet.bulkCreate(cleanData2);
+        return cleanData2
       
     }
     return(dbTypes)
@@ -180,22 +199,17 @@ router.post('/recipe', async (req, res) => {
       const recipecreated = await Recipe.findOrCreate({
         where: { title:title},
         defaults:{ 
+        title,
         resume, 
         image, 
         instructions, 
       }
-      }
-      )
+      })
       let dietType = await Diet.findAll({
         where: {name:diet }
       })
-      console.log(dietType)
-
-      const finalRecipe  = await recipecreated .addDiet([dietType])
-      console.log(finalRecipe)
+      const finalRecipe  = await recipecreated.addDiet([dietType.id])
       res.status(200).send(finalRecipe)
-  
-      
     } else {
       res.status(404).send('Please complete all fields')
     }
