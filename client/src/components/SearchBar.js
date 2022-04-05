@@ -22,7 +22,7 @@ export default function SearchBar() {
                 <option>Vegan</option>
                 <option>Gluten Free</option>
                 <option>Pescetarian</option>
-                <option>Paleo</option>
+                <option>Paleolithic</option>
                 <option>Primal</option>
                 <option>Low FODMAP</option>
                 <option>Whole30</option>

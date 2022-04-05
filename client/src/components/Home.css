@@ -25,7 +25,8 @@
 
 .pages {
     display: flex;
-    flex-direction: wrap;
+    flex-direction: row;
+    flex-wrap: wrap;
     width: 90%;
     height: 900px;
     background-color:  rgba(0, 0, 0, 0.305);

@@ -1,0 +1,20 @@
+.pageButton {
+    font-size: 10;
+    background-color: rgba(245, 245, 220, 0.779);
+    color: black;
+    height: 25px;
+    width: 25px;
+    text-align: center;
+}
+
+.pageNumbers {
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    color: black;
+    justify-content: center;
+}
+li{
+    display:flex;
+    flex-direction: row;
+}

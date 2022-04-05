@@ -1,10 +1,36 @@
 .cardContainer {
     display: flex;
     flex-direction: column;
-    width: 300px;
-    height: 260px;
-    background-color: rgba(210, 202, 202, 0.803);
+    width: 250px;
+    height: 300px;
+    background-color: rgba(210, 202, 202, 0.496);
     color: black;
     font-family:serif;
+    align-items:center ;
+    margin: 10px;
+}
+
+h6{
+    display: flex;
+    text-align:center;
+    font-family:serif;
     font-size: 15px;
+    color: rgb(17, 22, 21);
+     /* background-color:rgba(246, 246, 246, 0.421) ;   */
+    /* text-shadow: 10px 10px 10px  black; */
+    /* -webkit-text-stroke:  0.4px rgba(0, 0, 0); */
+    /* border-radius: 50px; */
+    /* letter-spacing: 4px; */
+    /* font-weight: 900; */
+
+}
+
+h7 {
+    display: flex;
+    font-size: 15px;
+    font-family: serif;
+    align-self: center;
+    color: rgb(17, 22, 21);
+    /* background-color:rgba(246, 246, 246, 0.421); */
+    text-align: center;
 }
