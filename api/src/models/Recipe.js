@@ -9,10 +9,10 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     id: {
-      type:DataTypes.INTEGER,
+      type:DataTypes.UUIDV4,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
-      allowNull: false,
+      // allowNull: false,
     },
     resume: {
       type: DataTypes.TEXT,
@@ -28,7 +28,7 @@ module.exports = (sequelize) => {
     },
     image: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     instructions: {
       type: DataTypes.TEXT,
@@ -36,8 +36,8 @@ module.exports = (sequelize) => {
     },
     created: {
       type: DataTypes.BOOLEAN,
-      allowNull: true,
-      defaultValue: false,
+      allowNull: false,
+      defaultValue: true,
     },
     // timestamps: false
   });
