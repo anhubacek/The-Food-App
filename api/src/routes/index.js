@@ -219,23 +219,30 @@ catch(e){
 
 router.post('/recipe', async (req, res) => {
   
-  const {title, resume, image, instructions, diet} = req.body
+  const {title, resume, score, healthScore, image, instructions, diet, id} = req.body
   try{
-    if (title, resume, image, instructions, diet){
-      const recipecreated = await Recipe.findOrCreate({
-        where: { title:title},
-        defaults:{ 
-        title,
-        resume, 
-        image, 
-        instructions, 
-      }
-      })
-      let dietType = await Diet.findAll({
-        where: {name:diet }
-      })
-      const finalRecipe  = await recipecreated.addDiet([dietType.id])
-      res.status(200).send(finalRecipe)
+    if (title, resume){
+        const recipecreated = await Recipe.create({
+          // where: { title:title},
+          // defaults:{ 
+          title,
+          resume, 
+          image, 
+          instructions,
+          score,
+          healthScore, 
+          id,
+        }
+        // }
+        )
+            const dietType = await Diet.findAll({
+              where: {name:diet},
+            });
+            
+             await recipecreated.addDiet(dietType);
+         
+            res.status(200).send('recipe created');
+        
     } else {
       res.status(404).send('Please complete all fields')
     }
