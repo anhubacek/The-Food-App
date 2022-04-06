@@ -11,3 +11,12 @@ export function getRecipes() {
         }
     }
 }
+
+
+export function filterByDiet(payload) {
+    return {type:"FILTER_BY_DIET", payload}
+}
+
+export function filterCreated(payload) {
+    return { type:"FILTER_CREATED", payload}
+}
