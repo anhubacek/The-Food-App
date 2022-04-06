@@ -1,10 +1,19 @@
 .pageButton {
-    font-size: 10;
-    background-color: rgba(245, 245, 220, 0.779);
-    color: black;
-    height: 25px;
-    width: 25px;
+    font-size: 13px;
+    border-radius: 5px; 
+    background-color: rgba(8, 21, 16, 0.904);
+    color: beige;
+    height: 28px;
+    width: 30px;
     text-align: center;
+    align-self: center;
+    font-weight: bold;
+
+}
+.pageButton:hover {
+    background-color:rgba(245, 245, 220, 0.914);
+    color: rgb(4, 13, 9);
+    cursor: pointer;
 }
 
 .pageNumbers {
@@ -14,7 +23,16 @@
     color: black;
     justify-content: center;
 }
-li{
-    display:flex;
+
+.ulPages {
+    display: flex;
     flex-direction: row;
+    text-decoration: none;
+}
+li {
+    text-decoration: none;
+}
+
+ul{
+    text-decoration: none;
 }

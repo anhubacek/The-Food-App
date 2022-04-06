@@ -8,6 +8,7 @@ import Pages from "./Pages";
 
 
 
+
 export default function Cards(){
         const dispatch  = useDispatch();
         useEffect( () => {dispatch(getRecipes())}, [dispatch] );
@@ -32,18 +33,25 @@ export default function Cards(){
          const pages = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
-
+        <div className="container2">
+         <div className="pagesContainer">
+        <Pages recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} pages={pages}/>
+        </div>
         <div className="map">
-        <div>
-         <Pages recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} pages={pages}/>
-         </div>
+
         { allRecipes? currentRecipes.map(e => { 
-                 return ( 
+                 return (
+        
                     <Card title={e.title} diets={e.diets }image={e.image} key={e.id}/> 
+
                  )
              }
              
          ): 'error al traer la data'}
+        </div>
+        <div className="pagesContainer">
+        <Pages recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} pages={pages}/>
+        </div>
         </div>
      
     )

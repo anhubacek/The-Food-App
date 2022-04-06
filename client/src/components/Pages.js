@@ -10,7 +10,7 @@ export default function Pages ({recipesPerPage, allRecipes, pages}){
 
     return(
         <nav className="pageNumbers">
-            <ul>
+            <ul className="ulPages">
             { pageNumbers && pageNumbers.map( e => (
                 <li className="number" key={e}>
                     <button className="pageButton" onClick={ () => pages(e)}>{e}</button> 

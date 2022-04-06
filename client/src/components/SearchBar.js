@@ -11,30 +11,30 @@ export default function SearchBar() {
             <input className='input' placeholder=""/>
             <button>Search</button>
             <select className="az">
-                <option>A - Z</option>
-                <option>Z - A</option>
+                <option value="A-Z">A - Z</option>
+                <option value="Z-A">Z - A</option>
             </select>
             <select className="diet"placeholder="Diet">
-                <option>All</option>
-                <option>Vegetarian</option>
-                <option>Ovo-Vegatarian</option>
-                <option>Lacto-Vegetarian</option>
-                <option>Vegan</option>
-                <option>Gluten Free</option>
-                <option>Pescetarian</option>
-                <option>Paleolithic</option>
-                <option>Primal</option>
-                <option>Low FODMAP</option>
-                <option>Whole30</option>
+                <option value="All">All</option>
+                <option value="Vegetarian">Vegetarian</option>
+                <option value="Ovo-Vegatarian">Ovo-Vegetarian</option>
+                <option value="Lacto-Vegetarian">Lacto-Vegetarian</option>
+                <option value="Vegan">Vegan</option>
+                <option value="Gluten Free">Gluten Free</option>
+                <option value="Pescetarian">Pescetarian</option>
+                <option value="Paleolithic">Paleolithic</option>
+                <option value="Primal">Primal</option>
+                <option value="Low FODMAP">Low FODMAP</option>
+                <option value="Whole30">Whole30</option>
             </select>
             <select className="type">
-                <option>All</option>
-                <option>Existent</option>
-                <option>Created</option>
+                <option value="All">All</option>
+                <option value="Existent">Existent</option>
+                <option value="Created">Created</option>
             </select>
             <select className="score">
-                <option>Highest Score</option>
-                <option>Lowest Score</option>
+                <option value="Highest Score">Highest Score</option>
+                <option value="Lowest Score">Lowest Score</option>
             </select>
 
             
