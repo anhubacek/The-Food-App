@@ -1,27 +1,49 @@
 import React from "react";
 import './SearchBar.css'
 import { useDispatch } from 'react-redux';
-import { filterByDiet } from "../actions/actions";
+import { filterByDiet, searchByName } from "../actions/actions";
 import { filterCreated } from "../actions/actions";
+import { orderByName } from "../actions/actions";
+import { orderByScore } from './../actions/actions';
 
 
-
-
-export default function SearchBar() {
-    const dispatch = useDispatch()
+export default function SearchBar({setCurrentPage, setOrder, name, setName}) {
+    const dispatch = useDispatch();
+    
 
     function handleFilterDiet(e) {
-        dispatch(filterByDiet(e.target.value))
+        dispatch(filterByDiet(e.target.value));
     }
 
     function handleFilterCreated(e) {
-        dispatch(filterCreated(e.target.value))
+        dispatch(filterCreated(e.target.value));
     }    
+
+    function handleOrderByName(e) {
+        dispatch(orderByName(e.target.value));
+        setCurrentPage(1);
+        setOrder("name");
+    }
+
+    function handleOrderByScore(e){
+        dispatch(orderByScore(e.target.value));
+        setCurrentPage(1);
+        setOrder("score");
+    }
+
+    function handleSearchByName(e) {
+        dispatch(searchByName(e.target.value))
+    }
+
+    function handleInputChange(e){
+
+    }    
+    
     return (
         <div className= 'containerbar'>
-            <input className='input' placeholder=""/>
-            <button>Search</button>
-            <select className="az">
+            <input className='input' autocomplete="false" value="" placeholder="Recipe Name"/>
+            <button type="submit">Search</button>
+            <select onChange={handleOrderByName} className="az">
                 <option value="A-Z">A - Z</option>
                 <option value="Z-A">Z - A</option>
             </select>
@@ -42,7 +64,8 @@ export default function SearchBar() {
                 <option value="Existent">Existent</option>
                 <option value="Created">Created</option>
             </select>
-            <select className="score">
+            <select onChange={handleOrderByScore} className="score">
+                <option value="Any Score">Any Score</option>
                 <option value="Highest Score">Highest Score</option>
                 <option value="Lowest Score">Lowest Score</option>
             </select>

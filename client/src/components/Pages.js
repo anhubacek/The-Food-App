@@ -4,8 +4,8 @@ import './Pages.css'
 export default function Pages ({recipesPerPage, allRecipes, pages}){
 
     const pageNumbers = [];
-    for(let i=0; i<= Math.ceil(allRecipes/recipesPerPage); i++) {
-        pageNumbers.push(i+1);
+    for(let i=1; i<= Math.ceil(allRecipes/recipesPerPage); i++) {
+        pageNumbers.push(i);
     }
 
     return(

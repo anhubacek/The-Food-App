@@ -9,7 +9,7 @@ import Pages from "./Pages";
 
 
 
-export default function Cards(){
+export default function Cards({currentPage, setCurrentPage}){
         const dispatch  = useDispatch();
         useEffect( () => {dispatch(getRecipes())}, [dispatch] );
 
@@ -18,7 +18,7 @@ export default function Cards(){
         console.log('ESTO ES "allRecipes"', allRecipes) 
 
         //ESTADOS PARA EL PAGINADO
-        const [currentPage, setCurrentPage] = useState(1);
+        // const [currentPage, setCurrentPage] = useState(1);
         const [recipesPerPage, setRecipesPerPage] = useState(9);
 
         //ultima receta en la pagina
@@ -42,7 +42,7 @@ export default function Cards(){
         { allRecipes? currentRecipes.map(e => { 
                  return (
         
-                    <Card title={e.title} diets={e.diets }image={e.image} key={e.id}/> 
+                    <Card title={e.title} diets={e.diets}image={e.image} key={e.id}/> 
 
                  )
              }
@@ -55,4 +55,4 @@ export default function Cards(){
         </div>
      
     )
-            }
+      }
