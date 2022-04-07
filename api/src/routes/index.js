@@ -14,14 +14,6 @@ const bodyParser = require('body-parser')
 // Configurar los routers
 //router.use('/auth', authRouter);
 router.use(cors())
-// // parse application/x-www-form-urlencoded
-// router.use(bodyParser.urlencoded({ extended: false }))
-
-// // parse application/json
-// router.use(bodyParser.json())
-
-
-
 
 
 
@@ -39,6 +31,7 @@ const getApiData = async () => {
             score: e.spoonacularScore,
             healthScore: e.healthScore,
             image: e.image,
+            dishTypes:(e.dishTypes.map(e =>(' ' + e.charAt(0).toUpperCase() + e.slice(1).toLowerCase()))).toString(),
             diets: (e.diets.map(e =>(' ' + e.charAt(0).toUpperCase() + e.slice(1).toLowerCase()))).toString(),
             instructions:e.analyzedInstructions.length? ((e.analyzedInstructions.map(e =>e.steps.map(e =>{
                 return e.number + ' ' + e.step
@@ -48,20 +41,7 @@ const getApiData = async () => {
       };
       
     });
-    // apiData.forEach( async (e) => { 
-    //   await Recipe.findOrCreate({
-    //   where: {title: e.title},
-    //   defaults: {
-    //     title: e.title,
-    //     id: e.id,
-    //     resume: e.resume,
-    //     score: e.score,
-    //     healthScore: e.healthScore,
-    //     image: e.image,
-    //     instructions:e.instructions,
-    //   }
-    // })
-    // })
+
  
     return apiData
   }
@@ -70,6 +50,8 @@ const getApiData = async () => {
   }
 };
 
+
+
 //TRAIGO LA DATA DE LA BASE DE DATOS//
 const getDbData = async () => {
   try{
@@ -77,16 +59,33 @@ const getDbData = async () => {
       include:
          {model: Diet, 
           attributes: ['name'], 
-          through: { attributes: [] }
-        }});
-
-        return dbData;
-  }
+          through: { attributes:[] }
+        }
+      });
+      
+      const dataBaseOK = dbData.map( e => {
+        return (
+          {
+            title: e.title,
+            id: e.id,
+            resume:e.resume,
+            healthScore: e.healthScore,
+            image: e.image,
+            instructions: e.instructions,
+            created: e.created,
+            dishTypes: e.dishTypes,
+            diets: e.diets[0]
+          }
+      )})
+           return dataBaseOK;
+        }
   catch(e) {
     console.log('Error en llamado a la BD' + (e))
   }
 
 };
+
+
 
 
 //TRAIGO LA DATA DE API Y BASE DE DATOS//
@@ -156,7 +155,7 @@ router.get('/recipes/:idRecipe', async (req,res) => {
 
 
 
-// HASTA AHORA TRAE UN ARRAY CON DIETAS EN LA API
+//  TRAE UN ARRAY CON DIETAS DE LA API
 router.get('/types' , async (req, res) => {
   try{
     const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
@@ -191,47 +190,25 @@ catch(e){
 
 
 
-// const getDietType = async () => {
-//   try{
-//     let dbTypes = await Diet.findAll();
-//     if (!dbTypes) {
-//         const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true`)
-      
-//       const apiData = apiUrl.data.results.map( e =>  e.diets );
-//       const data = apiData.flat(1) 
-//       const cleanData = data.filter((value, i) => data.indexOf(value) === i);
-//       const cleanData2 = cleanData.map( e => {
-//         return {name: e}
-//       })
-//         await Diet.bulkCreate(cleanData2);
-//         return cleanData2
-      
-//     }
-//     return(dbTypes)
-//   }
-    
-//   catch(e){
-//   console.log('Error en el llamado a la api' + (e))
-//   }
-// }
-
 
 
 router.post('/recipe', async (req, res) => {
   
-  const {title, resume, score, healthScore, image, instructions, diet, id} = req.body
+  const {title, resume, score, healthScore, image, instructions, dishTypes, diet, id} = req.body
   try{
     if (title, resume){
         const recipecreated = await Recipe.create({
           // where: { title:title},
           // defaults:{ 
-          title,
-          resume, 
-          image, 
-          instructions,
-          score,
-          healthScore, 
-          id,
+            title, 
+            resume, 
+            score, 
+            healthScore, 
+            image, 
+            instructions, 
+            dishTypes, 
+            diet, 
+            id
         }
         // }
         )
@@ -239,9 +216,9 @@ router.post('/recipe', async (req, res) => {
               where: {name:diet},
             });
             
-             await recipecreated.addDiet(dietType);
+             await recipecreated.addDiet(dietType[0]);
          
-            res.status(200).send('recipe created');
+            res.status(200).send(dietType[0]);
         
     } else {
       res.status(404).send('Please complete all fields')
@@ -254,6 +231,9 @@ router.post('/recipe', async (req, res) => {
 })
 
 module.exports = router;
+
+
+
 
 
 
