@@ -3,7 +3,7 @@ import axios from 'axios'
 export function getRecipes() {
     return async function(dispatch) {
         try {
-            var json = await axios.get('http://localhost:3001/recipes')
+            const json = await axios.get('http://localhost:3001/recipes')
             return dispatch({type:"GET_ALL_RECIPES", payload: json.data})
         }
         catch(e) {
@@ -12,6 +12,29 @@ export function getRecipes() {
     }
 }
 
+export function getTypes(){
+    return async function(dispatch) {
+        try {
+            const json = await axios.get('http://localhost:3001/types')
+            return dispatch({type:"GET_ALL_TYPES", payload: json.data})
+        }
+        catch(e) {
+            console.log('Error al traer los tipos de dieta' + (e))
+        }
+    }
+}
+
+export function postRecipe(payload) {
+    return async function() {
+        try {
+            const json = await axios.post('http://localhost:3001/recipe', payload)
+            return json;
+        }
+        catch(e) {
+            console.log('Error al crear la receta' + (e))
+        }
+    }
+}
 
 export function filterByDiet(payload) {
     return {type:"FILTER_BY_DIET", payload}

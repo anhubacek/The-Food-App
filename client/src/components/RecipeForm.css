@@ -1,0 +1,83 @@
+.pages {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    width:fit-content;
+    padding: 5px;
+    font-size: 20px;
+    font-family: serif;
+    text-align: center;
+    font-family:serif;
+    color: rgb(17, 22, 21);
+     background-color:rgba(246, 246, 246, 0.63) ;  
+    /* text-shadow: 10px 10px 10px  black; */
+    /* -webkit-text-stroke:  0.4px rgba(0, 0, 0); */
+    border-radius: 30px;
+    letter-spacing: 2px;
+    font-weight: 800;
+    
+}
+
+.input {
+    display: flex;
+    flex-direction:column;
+    margin: 20px;
+}
+
+.titleInput {
+    width: 800px;
+    height: 30px;
+    border-radius: 5px; 
+    font-size: 16px;
+}
+
+.resumeInput {
+    width: 800px;
+    height: 60px;
+    border-radius: 5px; 
+    font-size: 16px;
+}
+
+.instructionsInput {
+    width: 800px;
+    height: 180px;
+    border-radius: 5px; 
+    font-size: 16px;
+}
+
+.imageInput {
+    width: 800px;
+    height: 30px;
+    border-radius: 5px; 
+    font-size: 16px;
+}
+
+button {
+    width: 100px;
+    height: 37px;
+    border-radius: 5px; 
+    background-color: rgba(8, 21, 16, 0.904);
+    color: beige;
+    margin-right: 30px;
+    font-size: 18px;
+    letter-spacing: 2px;
+    justify-self: center;
+}
+
+.scores {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+   
+    
+}
+.scoreInput {
+    width: 80px;
+    height: 30px;
+    border-radius: 5px; 
+    font-size: 16px;
+    margin: 5px;
+}

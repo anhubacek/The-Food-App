@@ -3,6 +3,7 @@
 let initialState = {
     recipes: [],
     allRecipes:[],
+    types: [],
 };
 
 export default function rootReducer (state=initialState, action){ 
@@ -67,8 +68,17 @@ export default function rootReducer (state=initialState, action){
     case 'SEARCH_BY_NAME':
       return {
         ...state,
-        recipes: action
+        recipes: action.payload
       }
+    case 'GET_ALL_TYPES':
+      return {
+        ...state,
+        types: action.payload
+      }
+    case 'POST_RECIPE':
+        return {
+          ...state,
+        }   
     default: return state;
   }; 
  

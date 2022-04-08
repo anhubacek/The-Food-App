@@ -3,6 +3,8 @@ import './Home.css'
 import SearchBar from "./SearchBar.js";
 import  Cards from './Cards.js'
 import {Link} from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { getRecipes } from './../actions/actions';
 
 
 export default function Home() {
@@ -10,10 +12,20 @@ export default function Home() {
     const [order, setOrder] = useState(' ');
     const [name, setName] = useState('');
     // const [recipesPerPage, setRecipesPerPage] = useState(9);
+    const dispatch = useDispatch()
+
+    function handleFoodButton(e) {
+        dispatch(getRecipes())
+        setName(" ")
+    }
     return (
         <div className= 'container'>
             <div className ='nav'>
-                    <div className='title'> <h2>The Food App</h2></div>
+                    <div className='title'> 
+                    <Link to="/home" onClick={handleFoodButton}>
+                    <h2>The Food App</h2>
+                    </Link>
+                    </div>
                     <div className='links'>
                     <Link to='/create'> <h5>Create Recipe</h5> </Link>
                     </div>

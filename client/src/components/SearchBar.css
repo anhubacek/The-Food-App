@@ -49,6 +49,7 @@ button {
     color: beige;
     margin-right: 30px;
     font-size: 18px;
+    letter-spacing: 2px;
 }
 button:hover {
     background-color:rgba(245, 245, 220, 0.914);

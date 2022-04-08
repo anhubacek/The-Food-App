@@ -32,17 +32,21 @@ export default function SearchBar({setCurrentPage, setOrder, name, setName}) {
     }
 
     function handleSearchByName(e) {
-        dispatch(searchByName(e.target.value))
+        dispatch(searchByName(name))
+        setName(" ")
+        
     }
 
     function handleInputChange(e){
+        setName(e.target.value)
 
     }    
     
     return (
         <div className= 'containerbar'>
-            <input className='input' autocomplete="false" value="" placeholder="Recipe Name"/>
-            <button type="submit">Search</button>
+            <input className='input' autoComplete="false" value={name}
+            onChange={handleInputChange} placeholder="Recipe Name"/>
+            <button type="submit" onClick={handleSearchByName}>Search</button>
             <select onChange={handleOrderByName} className="az">
                 <option value="A-Z">A - Z</option>
                 <option value="Z-A">Z - A</option>
