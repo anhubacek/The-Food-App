@@ -6,6 +6,7 @@ import Card from './Card';
 import './Cards.css';
 import Pages from "./Pages";
 import {Link} from 'react-router-dom';
+const defaultImg = require ('../images/images.jpg')
 
 
 
@@ -42,7 +43,7 @@ export default function Cards({currentPage, setCurrentPage}){
         { allRecipes? currentRecipes.map(e => { 
                  return (
                     <Link to={"/recipe/" + e.id} key={e.id}>
-                    <Card title={e.title} diets={e.diets}image={e.image} key={e.id}/> 
+                    <Card title={e.title} diets={e.diets}image={e.image? e.image :defaultImg } key={e.id}/> 
                     </Link>
                  )
              }

@@ -49,7 +49,12 @@ export default function RecipeForm() {
     function handleSubmit(e){
         e.preventDefault();
         console.log(input)
-        dispatch(postRecipe(input))
+        if(errors.title || errors.resume || errors.instructions
+            || errors.score || errors.healthScore) {
+            alert("Please complete the fields.")
+        }
+        else {
+            dispatch(postRecipe(input))
         alert("Recipe created!")
         setInput({
             title: "",
@@ -62,6 +67,8 @@ export default function RecipeForm() {
             diet: [], 
             id:"",
         })
+        }
+        
     
     }
 
@@ -292,7 +299,7 @@ export default function RecipeForm() {
                             </div>
 
                     </div>
-                    <button >Create</button>
+                    <button type="submit">Create</button>
                     </div>
                 </form>
                 </div>
