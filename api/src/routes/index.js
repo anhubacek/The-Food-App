@@ -32,7 +32,7 @@ const getApiData = async () => {
             healthScore: e.healthScore,
             image: e.image,
             dishTypes:(e.dishTypes.map(e =>(' ' + e.charAt(0).toUpperCase() + e.slice(1).toLowerCase()))).toString(),
-            diets: (e.diets.map(e =>(' ' + e.charAt(0).toUpperCase() + e.slice(1).toLowerCase()))).toString(),
+            dietType: (e.diets.map(e =>(' ' + e.charAt(0).toUpperCase() + e.slice(1).toLowerCase()))).toString(),
             instructions:e.analyzedInstructions.length? ((e.analyzedInstructions.map(e =>e.steps.map(e =>{
                 return e.number + ' ' + e.step
               })
@@ -106,7 +106,6 @@ router.get('/recipes', async (req,res) => {
   const {name} = req.query       
   try {
     const allRecipes = await getTotalRecipes() 
-    console.log (allRecipes)
     if(name) {
       const nameRecipe = allRecipes.filter(e => e.title.toLowerCase().includes(name.toLowerCase()))
           if(nameRecipe) {
@@ -194,7 +193,7 @@ catch(e){
 
 router.post('/recipe', async (req, res) => {
   
-  const {title, resume, score, healthScore, image, instructions, dishTypes, diets, id} = req.body
+  const {title, resume, score, healthScore, image, instructions, dishTypes, diet, id} = req.body
   try{
     if (title, resume){
         const recipecreated = await Recipe.create({
@@ -207,7 +206,7 @@ router.post('/recipe', async (req, res) => {
             image, 
             instructions, 
             dishTypes, 
-            diets, 
+            diet, 
             id
         }
         // }
@@ -216,9 +215,9 @@ router.post('/recipe', async (req, res) => {
               where: {name:diet},
             });
             
-             await recipecreated.addDiet(dietType[0]);
+             await recipecreated.addDiet(dietType);
          
-            res.status(200).send(dietType[0]);
+            res.status(200).send(dietType);
         
     } else {
       res.status(404).send('Please complete all fields')
