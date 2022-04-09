@@ -43,12 +43,12 @@ export default function Cards({currentPage, setCurrentPage}){
         { allRecipes? currentRecipes.map(e => { 
                  return (
                     <Link to={"/recipe/" + e.id} key={e.id}>
-                    <Card title={e.title} diets={e.diets}image={e.image? e.image :defaultImg } key={e.id}/> 
+                    <Card title={e.title} diets={e.dietType? e.dietType:"error dieta"} image={e.image? e.image:<img src='../images/images.jpg'/> } key={e.id}/> 
                     </Link>
                  )
              }
              
-         ): 'error al traer la data'}
+         ): <p>Loading...</p>}
         </div>
         <div className="pagesContainer">
         <Pages recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} pages={pages}/>

@@ -54,6 +54,7 @@ label {
     height: 180px;
     border-radius: 5px; 
     font-size: 16px;
+   
 }
 
 .imageInput {
@@ -129,5 +130,5 @@ span {
 
 }
 .container {
-    height: 1500px;
+    height: 1400px;
 }

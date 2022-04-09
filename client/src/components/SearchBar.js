@@ -9,7 +9,7 @@ import { orderByScore } from './../actions/actions';
 
 export default function SearchBar({setCurrentPage, setOrder, name, setName}) {
     const dispatch = useDispatch();
-    
+   
 
     function handleFilterDiet(e) {
         dispatch(filterByDiet(e.target.value));

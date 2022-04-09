@@ -36,6 +36,8 @@ export function postRecipe(payload) {
     }
 }
 
+
+
 export function filterByDiet(payload) {
     return {type:"FILTER_BY_DIET", payload}
 }
@@ -63,4 +65,17 @@ export function searchByName(payload) {
             console.log('Error al buscar por nombre' + (e))
         }
     }
+}
+
+export function getRecipeById(id){
+    return async function(dispatch) {
+        try {
+            const json = await axios.get('http://localhost:3001/recipes/' + id)
+            return dispatch({type:"GET_RECIPE_BY_ID", payload: json.data})
+        }
+        catch(e) {
+            console.log('Error al traer la receta por ID' + (e))
+        }
+    }
+
 }

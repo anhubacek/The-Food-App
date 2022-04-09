@@ -72,6 +72,20 @@ export default function RecipeForm() {
     
     }
 
+    function handleCleanFields() {
+        setInput({
+            title: "",
+            resume: "",
+            score: "",
+            healthScore: "", 
+            image: "", 
+            instructions: "", 
+            dishTypes: "", 
+            diet: [], 
+            id:"",
+        })
+    }
+
     function validate(input) {
         let errors = {};
         if(!input.title) {
@@ -100,7 +114,7 @@ export default function RecipeForm() {
                 </Link>
             </div>
             <div className='pages'>
-                <h5>Create your own recipe!</h5>
+                <h5 onClick={handleCleanFields}>Create your own recipe!</h5>
                 <div className="form">
                 <form onSubmit={handleSubmit}>
                     <div className="input">
@@ -120,7 +134,7 @@ export default function RecipeForm() {
                     </div>
                     <div className="input">
                      <label>Resume</label>
-                    <input
+                    <textarea
                         type="text"
                         value={input.resume}
                         name="resume"
@@ -134,7 +148,7 @@ export default function RecipeForm() {
                     </div>
                     <div className="input">
                     <label>Instructions</label>
-                    <input
+                    <textarea
                         type="text"
                         value={input.instructions}
                         name="instructions"

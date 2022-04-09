@@ -1,12 +1,18 @@
-import React from "react";
-
+import React , {useEffect} from "react";
+import { useDispatch} from "react-redux";
 import './Home.css'
 import {Link} from 'react-router-dom'
+import { getRecipeById } from './../actions/actions';
 
-export default function Detail({title, id, resume, score, healthScore, image, dishType, diets, instructions}) {
+export default function Detail(props) {
+    const dispatch = useDispatch();
 
+    useEffect(()=>{dispatch(getRecipeById(props.match.params.id))}, [dispatch])
+    const recipe = (state => state.detail)
 
     return (
+        <div>
+        { recipe ? 
         <div className= 'container'>
             <div className ='nav'>
                 <Link to='/home'>
@@ -21,17 +27,19 @@ export default function Detail({title, id, resume, score, healthScore, image, di
            
             <div >
                 <div >
-                    <p className="title">{title}</p>
+                    <p className="title">{recipe[0].title}</p>
                         <div >
-                        <img src={image} alt=' '  />
+                        <img src={recipe[0].image} alt=' '  />
                         </div>
-                    <h6>{diets}</h6>
+                    <h6>{recipe[0].diets? recipe[0].diets : recipe[0].diet.map(e => e.name)}</h6>
                 </div>
            
             </div>
             
 
-
+            </div>
+            : <p>LOADING...</p>
+            }
         </div>
     )
 }

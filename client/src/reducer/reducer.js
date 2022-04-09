@@ -4,6 +4,7 @@ let initialState = {
     recipes: [],
     allRecipes:[],
     types: [],
+    detail: []
 };
 
 export default function rootReducer (state=initialState, action){ 
@@ -69,6 +70,11 @@ export default function rootReducer (state=initialState, action){
       return {
         ...state,
         recipes: action.payload
+      }
+    case 'GET_RECIPE_BY_ID':
+      return {
+        ...state,
+        detail: action.payload
       }
     case 'GET_ALL_TYPES':
       return {
