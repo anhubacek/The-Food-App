@@ -5,6 +5,7 @@ import {getRecipes} from '../actions/actions.js';
 import Card from './Card';
 import './Cards.css';
 import Pages from "./Pages";
+import {Link} from 'react-router-dom';
 
 
 
@@ -15,7 +16,6 @@ export default function Cards({currentPage, setCurrentPage}){
 
         //TRAIGO LAS RECETAS DEL ESTADO
         const allRecipes = useSelector(state => state.recipes);
-        console.log('ESTO ES "allRecipes"', allRecipes) 
 
         //ESTADOS PARA EL PAGINADO
         // const [currentPage, setCurrentPage] = useState(1);
@@ -41,9 +41,9 @@ export default function Cards({currentPage, setCurrentPage}){
 
         { allRecipes? currentRecipes.map(e => { 
                  return (
-        
+                    <Link to={"/recipe/" + e.id} key={e.id}>
                     <Card title={e.title} diets={e.diets}image={e.image} key={e.id}/> 
-
+                    </Link>
                  )
              }
              

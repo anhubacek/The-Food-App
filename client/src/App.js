@@ -25,7 +25,7 @@ function App() {
             element= {<RecipeForm/>} 
             />  
              <Route 
-            exact path='/detail'
+             path='/recipe'
             element= {<Detail/>} 
             />  
       </Routes>

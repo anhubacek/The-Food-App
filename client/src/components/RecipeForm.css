@@ -114,3 +114,20 @@ span {
 
      
 }
+
+.error {
+    background-color: rgba(178, 35, 35, 0.742);
+    color: rgb(246, 246, 246);
+    font-size: 12px;
+    font-family: arial;
+ 
+    padding: 3px;
+    margin-left: 10px;
+    border-radius: 2px;
+    width:fit-content;
+    letter-spacing: 2px;
+
+}
+.container {
+    height: 1500px;
+}
