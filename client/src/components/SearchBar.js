@@ -61,7 +61,7 @@ export default function SearchBar({setCurrentPage, setOrder, name, setName}) {
                 <option value="Paleolithic">Paleolithic</option>
                 <option value="Primal">Primal</option>
                 <option value="Fodmap friendly">Low FODMAP</option>
-                <option value="Whole 30">Whole30</option>
+                <option value="Whole 30">Whole 30</option>
             </select>
             <select onChange={handleFilterCreated} className="type">
                 <option value="All">All</option>

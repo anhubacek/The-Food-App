@@ -18,7 +18,7 @@ export default function RecipeForm() {
         instructions: "", 
         dishTypes: "", 
         diet: [], 
-        id: "",
+    
     })
 
     useEffect(()=> {dispatch(getTypes)}, [dispatch]);
@@ -29,15 +29,7 @@ export default function RecipeForm() {
                 <Link to='/home'>
                 <div className='title'> <h2>The Food App</h2></div>
                 </Link>
-                {/* <div className='links'>
-                <Link to='/create'>
-                <h5>Create Recipe</h5>
-                </Link>
-                </div> */}
             </div>
-            {/* <div className="searchbar">
-                <SearchBar/>
-            </div> */}
             <div className='pages'>
                 <h5>Create your own recipe!</h5>
                 <div className="form">
@@ -46,8 +38,8 @@ export default function RecipeForm() {
                     <label>Title</label>
                     <input
                         type="text"
-                        value=""
-                        name="name"
+                        value={input.title}
+                        name="title"
                         className="titleInput"
                         
                     />
@@ -56,7 +48,8 @@ export default function RecipeForm() {
                      <label>Resume</label>
                     <input
                         type="text"
-                        value=""
+                        value={input.resume}
+                        name="resume"
                         className="resumeInput"
                       
                     />
@@ -65,7 +58,8 @@ export default function RecipeForm() {
                     <label>Instructions</label>
                     <input
                         type="text"
-                        value=""
+                        value={input.instructions}
+                        name="instructions"
                         className="instructionsInput"
                     />
                     </div>
@@ -73,7 +67,8 @@ export default function RecipeForm() {
                     <label>Image URL</label>
                     <input
                         type="text"
-                        value=""
+                        value={input.image}
+                        name="image"
                         className="imageInput"
                     />
                     </div>
@@ -85,7 +80,10 @@ export default function RecipeForm() {
                                 <input
                                     type="number"
                                     value=""
+                                    name="score"
                                     className="scoreInput"
+                                    min="1"
+                                    max="100"
                                 />
                                 </div>
                                 <div className="input">
@@ -93,13 +91,110 @@ export default function RecipeForm() {
                                 <input
                                     type="number"
                                     value=""
+                                    name="heathScore"
                                     className="scoreInput"
+                                    min="1"
+                                    max="100"
                                 />
                                 </div>
 
                                 </div>
+
                             <div className="diets">
 
+                            <label>Diets</label>
+
+                            <div className="dietInput">
+                                <span>Dairy Free</span>
+                                <input
+                                    type="checkbox"
+                                    value="dairy free"
+                                    name="dairy free"
+                                    className="checkboxInput"
+                                />
+                            </div>
+
+                            <div className="dietInput">
+                                <span>Lacto Ovo Vegetarian</span>
+                                <input
+                                    type="checkbox"
+                                    value="lacto ovo vegetarian"
+                                    name="lacto ovo vegetarian"
+                                    className="checkboxInput"
+                                />
+                            </div>
+                        
+                            <div className="dietInput">
+                                <span>Vegan</span>
+                                <input
+                                    type="checkbox"
+                                    value="vegan"
+                                    name="vegan"
+                                    className="checkboxInput"
+                                />
+                            </div>
+
+                            <div className="dietInput">
+                                <span>Gluten Free</span>
+                                <input
+                                    type="checkbox"
+                                    value="gluten free"
+                                    name="gluten free"
+                                    className="checkboxInput"
+                                />
+                            </div>
+
+                            <div className="dietInput">
+                                <span>Pescatarian</span>
+                                <input
+                                    type="checkbox"
+                                    value="pescatarian"
+                                    name="pescatarian"
+                                    className="checkboxInput"
+                                />
+                            </div>
+
+                            <div className="dietInput">
+                                <span>Paleolithic</span>
+                                <input
+                                    type="checkbox"
+                                    value="paleolithic"
+                                    name="paleolithic"
+                                    className="checkboxInput"
+                                />
+                            </div>
+
+                            <div className="dietInput">
+                                <span>Primal</span>
+                                <input
+                                    type="checkbox"
+                                    value="primal"
+                                    name="primal"
+                                    className="checkboxInput"
+                                />
+                            </div>
+
+                            <div className="dietInput">
+                                <span>Fodmap Friendly</span>
+                                <input
+                                    type="checkbox"
+                                    value="fodmap friendly"
+                                    name="fodmap friendly"
+                                    className="checkboxInput"
+                                />
+                            </div>
+
+                            <div className="dietInput">
+                                <span>Whole 30</span>
+                                <input
+                                    type="checkbox"
+                                    value="whole 30"
+                                    name="whole 30"
+                                    className="checkboxInput"
+                                />
+                            </div>
+
+               
                             </div>
 
                     </div>

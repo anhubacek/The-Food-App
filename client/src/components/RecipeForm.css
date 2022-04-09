@@ -27,6 +27,14 @@ label {
     margin: 20px;
 }
 
+.dietInput {
+    display: flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+    justify-items: center;
+
+}
+
 .titleInput {
     width: 800px;
     height: 30px;
@@ -67,12 +75,18 @@ button {
     justify-self: center;
 }
 
+.scoresAndDiets {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .scores {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
    
-    
+    justify-content: center;
+   
 }
 .scoreInput {
     width: 80px;
@@ -80,4 +94,23 @@ button {
     border-radius: 5px; 
     font-size: 16px;
     margin: 5px;
+}
+
+.checkboxInput {
+    width: 20px;
+}
+
+span {
+    font-size: 20px;
+    font-family: serif;
+    text-align: center;
+    font-family:serif;
+    color: rgb(255, 255, 255);
+     font-weight: 1000;
+     letter-spacing: 1px;
+     align-self: center;
+     background-color: rgba(0, 0, 0, 0.236);
+
+
+     
 }
