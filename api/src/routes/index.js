@@ -194,7 +194,7 @@ catch(e){
 
 router.post('/recipe', async (req, res) => {
   
-  const {title, resume, score, healthScore, image, instructions, dishTypes, diet, id} = req.body
+  const {title, resume, score, healthScore, image, instructions, dishTypes, diets, id} = req.body
   try{
     if (title, resume){
         const recipecreated = await Recipe.create({
@@ -207,7 +207,7 @@ router.post('/recipe', async (req, res) => {
             image, 
             instructions, 
             dishTypes, 
-            diet, 
+            diets, 
             id
         }
         // }
