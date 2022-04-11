@@ -94,6 +94,14 @@ button {
     margin: 5px;
 }
 
+.dishTypesInput{
+    width: 400px;
+    height: 30px;
+    border-radius: 5px; 
+    font-size: 16px;
+    margin: 5px;
+}
+
 .checkboxInput {
     width: 20px;
 }
@@ -127,5 +135,5 @@ span {
 
 }
 .container {
-    height: 1400px;
+    height: 1500px;
 }

@@ -51,15 +51,11 @@ export default function Detail() {
                             <label>Health Score</label>
                             <p>{recipe[0].healthScore}</p>
                             </div>
-                            
                         </div>
-
-
-                    
-
                     <div className="divresume">
                     
-                        <img className="imgDetail" src={recipe[0].image} alt=' '  />
+                        <img className="imgDetail" src={recipe[0].image? recipe[0].image : "https://media.istockphoto.com/photos/blank-recipe-book-on-wooden-table-picture-id481482102?b=1&k=20&m=481482102&s=170667a&w=0&h=68rhfYQV0RU3JLXrF6T1T7tWQQ4nzb24fMZ-KxBy8Hk="} 
+                        alt=' '  />
                        
                         <div>
                         <label>Resume</label>
@@ -69,13 +65,12 @@ export default function Detail() {
                    
                     <label>Instructions</label>
                     <p className="instructionsp">{recipe[0].instructions}</p>
-                    
-                    
+              
                     </div>
                 </div>
-           
+
             : 
-            <div className="pages1">
+            <div className="pages1loading">
             <p className="loading">LOADING...</p> 
             </div>}
             </div>

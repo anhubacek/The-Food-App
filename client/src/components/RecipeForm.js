@@ -205,6 +205,23 @@ export default function RecipeForm() {
                     )}
                                 </div>
 
+
+                                <div className="input">
+                                <label>Dish Type</label>
+                                <input
+                                    type="text"
+                                    value={input.dishTypes}
+                                    name="dishTypes"
+                                    className="dishTypesInput"
+                                    onChange={handleChange}
+                                    placeholder="Breakfast, Dinner, Lunch, etc.."
+                                />
+                                {/* {errors.healthScore && (
+                        <p className="error">{errors.healthScore}</p>
+                    )} */}
+                                </div>
+
+
                                 </div>
 
                             <div className="diets">

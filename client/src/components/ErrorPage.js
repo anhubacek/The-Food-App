@@ -18,7 +18,7 @@ return (
                 </Link>
             </div>
         </div>
-            <div className="pages1">
+            <div className="pageserror">
         <p className="notfound">404  - </p> 
         <p className="notfound"> NOT FOUND</p> 
         </div>

@@ -1,20 +1,22 @@
 .recipeDetail {
     display: flex;
+    width: 90%;
     flex-direction:column;
     justify-content:center;
-    /* background-color: rgba(8, 21, 16, 0.604); */
+    background-color: rgba(8, 21, 16, 0.604);
     color: beige;
     font-family:serif;
     align-items:center ;
     align-self: center;
     border-radius: 50px;
+    vertical-align: top;
 }
 
 .container1 {
     display: flex;
     flex-direction: column;
     width: auto;
-    height: 1100px;
+    height: auto;
     /* background-color: bisque; */
     background-image: url('../images/fondo.jpg');
     background-position: center;
@@ -31,8 +33,23 @@
     align-self: center;
     justify-content: center;
     margin-top: 5px;
+    vertical-align: top;
  
 }
+
+.pages1loading {
+    display: flex;
+    width: 90%;
+    height: 800px;
+    /* background-color:  rgba(0, 0, 0, 0.097); */
+    background-color: rgba(8, 21, 16, 0.604);
+    align-self: center;
+    justify-content: center;
+    margin-top: 5px;
+    vertical-align: top;
+ 
+}
+
 
 .loading {
     font-size: 60px;
@@ -52,13 +69,13 @@
 
 label {
     width:fit-content;
-    padding: 5px;
+    padding: 7px;
     font-size: 20px;
     font-family: serif;
     text-align: center;
     font-family:serif;
     color: rgb(17, 22, 21);
-     background-color:rgba(246, 246, 246, 0.83) ;  
+     background-color:rgba(246, 246, 246, 0.926) ;  
     border-radius: 30px;
     letter-spacing: 2px;
     font-weight: 800;
@@ -76,6 +93,8 @@ label {
     letter-spacing: 2px;
     font-weight: 800;
     padding: 6px;
+    vertical-align: text-top;
+
     
 }
 
@@ -94,6 +113,7 @@ p{
     flex-direction: row;
     width: 90%;
     margin-top: 15px;
+    margin:20px
 
 }
 
@@ -121,4 +141,16 @@ p{
 .notfound{
     font-size: 50px;
     color: rgba(245, 245, 220, 0.929);
+}
+
+.pageserror{
+    display: flex;
+    width: 90%;
+    height: 800px;
+    /* background-color:  rgba(0, 0, 0, 0.097); */
+    background-color: rgba(8, 21, 16, 0.604);
+    align-self: center;
+    justify-content: center;
+    margin-top: 5px;
+    vertical-align: top;
 }

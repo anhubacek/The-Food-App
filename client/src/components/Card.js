@@ -11,7 +11,7 @@ export default function Card ({title, image, diets, id}) {
                     <div className= 'imgContainer'>
                     <img src={image} alt=' ' className="recipeImage" />
                     </div>
-                <h6>{diets}</h6>
+                <p className="dietcard">{diets}</p>
             </div>
     
         </div>
