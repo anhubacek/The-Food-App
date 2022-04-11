@@ -21,7 +21,7 @@ router.use(cors())
 
 const getApiData = async () => {
   try{
-      const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
+      const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=10`)
     
     const apiData = apiUrl.data.results.map( e => {
       return {         
@@ -32,7 +32,7 @@ const getApiData = async () => {
             healthScore: e.healthScore,
             image: e.image,
             dishTypes:(e.dishTypes.map(e =>(' ' + e.charAt(0).toUpperCase() + e.slice(1).toLowerCase()))).toString(),
-            dietType: (e.diets.map(e =>(' ' + e.charAt(0).toUpperCase() + e.slice(1).toLowerCase()))).toString(),
+            diets: (e.diets.map(e =>(' ' + e.charAt(0).toUpperCase() + e.slice(1).toLowerCase()))).toString(),
             instructions:e.analyzedInstructions.length? ((e.analyzedInstructions.map(e =>e.steps.map(e =>{
                 return e.number + ' ' + e.step
               })
@@ -74,7 +74,7 @@ const getDbData = async () => {
             instructions: e.instructions,
             created: e.created,
             dishTypes: e.dishTypes,
-            diets: e.diets[0]
+            diets: ((e.diets.map(e => e.name)).map(e => ' '+ e.charAt(0).toUpperCase() + e.slice(1).toLowerCase())).toString()
           }
       )})
            return dataBaseOK;
@@ -128,24 +128,16 @@ catch(e){
 
 
 //FUNCIONA-
-router.get('/recipes/:idRecipe', async (req,res) => {
-  const {idRecipe} = req.params
-  try {
-    const idRecipeApi = await axios.get(`https://api.spoonacular.com/recipes/${idRecipe}/information?apiKey=${API_KEY}`)
 
-      const recipeId= {            
-            title: idRecipeApi.data.title,
-            id: idRecipeApi.data.id,
-            resume: idRecipeApi.data.summary,
-            score: idRecipeApi.data.spoonacularScore,
-            healthScore: idRecipeApi.data.healthScore,
-            image: idRecipeApi.data.image,
-            instructions:idRecipeApi.data.analyzedInstructions? idRecipeApi.data.analyzedInstructions.map(e =>e.steps.map(e =>{
-              return e.number + ' ' + e.step
-            })): 'No hay paso a paso'
-    };
-      
-    res.status(200).send(recipeId)
+
+
+router.get('/recipe/:id', async (req,res) => {
+  const {id} = req.params
+  try {
+    const recipes = await getTotalRecipes()
+    const idRecipe = recipes.filter( e => e.id == id)
+    console.log(idRecipe)
+    res.status(200).send(idRecipe)
   }
   catch(e) {
     console.log("Error al buscar receta por ID" + e)
@@ -193,7 +185,7 @@ catch(e){
 
 router.post('/recipe', async (req, res) => {
   
-  const {title, resume, score, healthScore, image, instructions, dishTypes, diet, id} = req.body
+  const {title, resume, score, healthScore, image, instructions, dishTypes, diets, id} = req.body
   try{
     if (title, resume){
         const recipecreated = await Recipe.create({
@@ -206,18 +198,17 @@ router.post('/recipe', async (req, res) => {
             image, 
             instructions, 
             dishTypes, 
-            diet, 
             id
         }
         // }
         )
             const dietType = await Diet.findAll({
-              where: {name:diet},
+              where: {name:diets},
             });
-            
+           
              await recipecreated.addDiet(dietType);
          
-            res.status(200).send(dietType);
+            res.status(200).send("Recipe created");
         
     } else {
       res.status(404).send('Please complete all fields')
