@@ -26,6 +26,10 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
+    dishTypes:{
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     image: {
       type: DataTypes.TEXT,
       allowNull: true,

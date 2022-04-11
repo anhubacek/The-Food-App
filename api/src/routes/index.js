@@ -21,7 +21,7 @@ router.use(cors())
 
 const getApiData = async () => {
   try{
-      const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=10`)
+      const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
     
     const apiData = apiUrl.data.results.map( e => {
       return {         
@@ -37,7 +37,7 @@ const getApiData = async () => {
                 return e.number + ' ' + e.step
               })
               
-            ))[0]).toString(): 'No hay paso a paso'
+            ))[0]).toString(): 'No instructions needed.'
       };
       
     });
@@ -70,6 +70,7 @@ const getDbData = async () => {
             id: e.id,
             resume:e.resume,
             healthScore: e.healthScore,
+            score: e.score,
             image: e.image,
             instructions: e.instructions,
             created: e.created,
