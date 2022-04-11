@@ -13,12 +13,9 @@ label {
     font-family:serif;
     color: rgb(17, 22, 21);
      background-color:rgba(246, 246, 246, 0.63) ;  
-    /* text-shadow: 10px 10px 10px  black; */
-    /* -webkit-text-stroke:  0.4px rgba(0, 0, 0); */
     border-radius: 30px;
     letter-spacing: 2px;
     font-weight: 800;
-    
 }
 
 .input {

@@ -18,7 +18,9 @@
     align-self: center;
     width: 90%;
     height: 100px;
-    background-color:  rgba(0, 0, 0, 0.305);
+    /* background-color:  rgba(0, 0, 0, 0.197); */
+
+    background-color: rgba(8, 21, 16, 0.604);
     /* background-image: url('../images/nav.jpg');  */
     color:black
 }
@@ -29,7 +31,9 @@
     flex-wrap: wrap;
     width: 90%;
     height: 100%;
-    background-color:  rgba(0, 0, 0, 0.305);
+    /* background-color:  rgba(0, 0, 0, 0.197); */
+
+    background-color: rgba(8, 21, 16, 0.604);
     align-self: center;
     margin-top: 5px;
  
@@ -38,7 +42,9 @@
 .searchbar {
     width: 90%;
     height: 70px;
-    background-color:   rgba(0, 0, 0, 0.305);
+    /* background-color:   rgba(0, 0, 0, 0.305); */
+    background-color: rgba(8, 21, 16, 0.604);
+
     align-self: center;
     margin-top: 5px;
     align-items: center;
@@ -50,7 +56,7 @@ h2 {
     text-align: center;
     font-family: 'Oleo Script Swash Caps', cursive;
     font-size: 65px;
-    color: rgba(246, 246, 242, 0.977);
+    color: rgba(246, 246, 242, 0.994);
     /* background-color:rgba(12, 12, 12, 0.3) ; */
     -webkit-text-stroke:  0.5px rgb(24, 31, 29);
     text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.45);

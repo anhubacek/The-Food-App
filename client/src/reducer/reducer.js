@@ -4,7 +4,7 @@ let initialState = {
     recipes: [],
     allRecipes:[],
     types: [],
-    detail: []
+    detail: [],
 };
 
 export default function rootReducer (state=initialState, action){ 
@@ -36,13 +36,13 @@ export default function rootReducer (state=initialState, action){
       const allRecipes3 = state.allRecipes;
       const sortedRecipes = action.payload === 'A-Z' ?
       allRecipes3.sort(function (a,b) {
-        if (a.title > b.title) return 1;
-        if (b.title > a.title) return -1;
+        if (a.title.toUpperCase() > b.title.toUpperCase()) return 1;
+        if (a.title.toUpperCase() < b.title.toUpperCase()) return -1;
         return 0;
       }) :
       allRecipes3.sort(function (a,b) {
-        if (a.title < b.title) return 1;
-        if (b.title < a.title) return -1;
+        if (a.title.toUpperCase() < b.title.toUpperCase()) return 1;
+        if (a.title.toUpperCase() > b.title.toUpperCase()) return -1;
         return 0;
       });
       return {

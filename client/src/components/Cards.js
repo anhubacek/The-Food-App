@@ -42,8 +42,8 @@ export default function Cards({currentPage, setCurrentPage}){
 
         { allRecipes? currentRecipes.map(e => { 
                  return (
-                    <Link to={"/recipe/" + e.id} key={e.id}>
-                    <Card title={e.title} diets={e.dietType? e.dietType:"error dieta"} image={e.image? e.image:<img src='../images/images.jpg'/> } key={e.id}/> 
+                    <Link to={"/detail/" + e.id} key={e.id}>
+                    <Card title={e.title} diets={e.diets? e.diets: "No diet type."} image={e.image? e.image: "Image not found"} key={e.id}/> 
                     </Link>
                  )
              }

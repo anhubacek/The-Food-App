@@ -4,6 +4,7 @@ import Landing from './components/Landing.js';
 import Home from './components/Home.js';
 import RecipeForm from './components/RecipeForm.js';
 import Detail from './components/Detail.js';
+import ErrorPage from './components/ErrorPage';
 
 
 
@@ -25,8 +26,12 @@ function App() {
             element= {<RecipeForm/>} 
             />  
              <Route 
-             path='/recipe'
+             path='/detail/:id'
             element= {<Detail/>} 
+            /> 
+            <Route 
+             path='*'
+            element= {<ErrorPage/>} 
             />  
       </Routes>
   </BrowserRouter>

@@ -8,8 +8,8 @@ import './RecipeForm.css'
 
 export default function RecipeForm() {
     const dispatch = useDispatch();
+    useEffect(()=> {dispatch(getTypes())}, []);
 
-    const types = useSelector(state => state.types);
     const [input, setInput] = useState({
         title: "",
         resume: "",
@@ -18,13 +18,11 @@ export default function RecipeForm() {
         image: "", 
         instructions: "", 
         dishTypes: "", 
-        diet: [], 
+        diets: []
     
-    })
+    });
 
-    const [errors, setErrors] = useState({})
-
-    useEffect(()=> {dispatch(getTypes)}, [dispatch]);
+    const [errors, setErrors] = useState({});
 
     function handleChange(e){
         setInput({
@@ -36,21 +34,23 @@ export default function RecipeForm() {
             ...input,
             [e.target.name]: e.target.value
         }))
-    }
+    };
+
     function handleCheck(e){
+        console.log(input)
         if (e.target.checked){
             setInput({
                 ...input,
-                diet: [...input.diet, e.target.value]
-            })
-        }
-    }
+                diets: [...input.diets, e.target.value]
+            });
+        } 
+    };
 
     function handleSubmit(e){
         e.preventDefault();
         console.log(input)
-        if(errors.title || errors.resume || errors.instructions
-            || errors.score || errors.healthScore) {
+        if(!input.title || !input.resume || !input.instructions
+            || !input.score || !input.healthScore) {
             alert("Please complete the fields.")
         }
         else {
@@ -64,7 +64,7 @@ export default function RecipeForm() {
             image: "", 
             instructions: "", 
             dishTypes: "", 
-            diet: [], 
+            diets: [], 
             id:"",
         })
         }
@@ -81,7 +81,7 @@ export default function RecipeForm() {
             image: "", 
             instructions: "", 
             dishTypes: "", 
-            diet: [], 
+            diets: [], 
             id:"",
         })
     }
@@ -97,6 +97,7 @@ export default function RecipeForm() {
         if (!input.instructions) {
             errors.instructions = "Please complete the steps.";
         }
+       
         if(!input.score || input.score > 100 || input.score < 1){
             errors.score = "Score should be a number from 1 to 100."
         }
@@ -324,3 +325,10 @@ export default function RecipeForm() {
         </div>
     )
 }
+
+
+// let regexName = /^\b[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/
+// let regexScore =/^[1-9]?[0-9]{1}$|^100$/;
+// let regexHealthScore = /^[1-9]?[0-9]{1}$|^100$/;
+// let regexSummary =/^[A-Za-z0-9_-]+$/
+// let regexSteps =/^[A-Za-z0-9_-]+$/

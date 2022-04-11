@@ -20,18 +20,21 @@ export default function SearchBar({setCurrentPage, setOrder, name, setName}) {
     }    
 
     function handleOrderByName(e) {
+        e.preventDefault(e);
         dispatch(orderByName(e.target.value));
         setCurrentPage(1);
-        setOrder("name");
+        setOrder("name" + e.target.value);
     }
 
     function handleOrderByScore(e){
+        e.preventDefault(e);
         dispatch(orderByScore(e.target.value));
         setCurrentPage(1);
-        setOrder("score");
+        setOrder("score" + e.target.value);
     }
 
     function handleSearchByName(e) {
+        e.preventDefault(e);
         dispatch(searchByName(name))
         setName(" ")
         
@@ -48,6 +51,7 @@ export default function SearchBar({setCurrentPage, setOrder, name, setName}) {
             onChange={handleInputChange} placeholder="Recipe Name"/>
             <button type="submit" onClick={handleSearchByName}>Search</button>
             <select onChange={handleOrderByName} className="az">
+                 <option >Order</option>
                 <option value="A-Z">A - Z</option>
                 <option value="Z-A">Z - A</option>
             </select>
@@ -69,7 +73,7 @@ export default function SearchBar({setCurrentPage, setOrder, name, setName}) {
                 <option value="Created">Created</option>
             </select>
             <select onChange={handleOrderByScore} className="score">
-                <option value="Any Score">Any Score</option>
+                <option >Score</option>
                 <option value="Highest Score">Highest Score</option>
                 <option value="Lowest Score">Lowest Score</option>
             </select>
