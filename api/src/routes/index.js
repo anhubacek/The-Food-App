@@ -1,4 +1,5 @@
 const { Router } = require('express');
+
 // Importar todos los routers;
 //const authRouter = require('./auth.js');
 const axios = require('axios');
@@ -102,7 +103,7 @@ const getTotalRecipes = async () => {
 //////////////////////////////////// R U T A S ////////////////////////////////////////////////
 
 
-//FUNCIONA- 
+//TRAE TODAS LAS RECETAS- 
 router.get('/recipes', async (req,res) => {
   const {name} = req.query       
   try {
@@ -128,9 +129,7 @@ catch(e){
 
 
 
-//FUNCIONA-
-
-
+//TRAE LA RECETA BUSCADA POR ID
 
 router.get('/recipe/:id', async (req,res) => {
   const {id} = req.params
@@ -147,29 +146,29 @@ router.get('/recipe/:id', async (req,res) => {
 
 
 
-//  TRAE UN ARRAY CON DIETAS DE LA API
+//  TRAE TIPOS DE DIETAS DE LA API
 router.get('/types' , async (req, res) => {
   try{
     const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
   
   const apiData = apiUrl.data.results.map( e => { 
-    return  e.diets
+    return  e.diets //traigo la prop diets de cada receta
   });
-  const data = apiData.flat(1) 
+  const data = apiData.flat(1) //concateno todos los arreglos q llegan dentro del arreglo
 
-  const cleanData = data.filter((value, i) => {
+  const cleanData = data.filter((value, i) => { //saco los elementos repetidos
     return data.indexOf(value) === i;
   }
 );
 const cleanData2 = cleanData.map( e => {
-  return {name: e}
+  return {name: e} //convierto el array en un array de objetos con la prop name: (nombre de la dieta)
 })
 
-cleanData2.forEach( async (e) => { 
-  await Diet.findOrCreate({
-  where: {name: e.name},
+cleanData2.forEach( async (e) => { //por cada objeto de este arreglo
+  await Diet.findOrCreate({  //se fija si ya existe y sino lo crea en la bd
+  where: {name: e.name}, 
   defaults: {
-    name: e.name
+    name: e.name  //establezco la prop name del modelo diet en "nombre de la dieta"
   }
 })
 })
@@ -185,14 +184,12 @@ catch(e){
 
 
 router.post('/recipe', async (req, res) => {
-  
+  //recibo los parametros por body (formulario)
   const {title, resume, score, healthScore, image, instructions, dishTypes, diets, id} = req.body
   try{
-    if (title, resume){
+    if (title, resume){ //si estan las propiedades obligatorias
         const recipecreated = await Recipe.create({
-          // where: { title:title},
-          // defaults:{ 
-            title, 
+            title,  //creo la receta con los valores obtenidos
             resume, 
             score, 
             healthScore, 
@@ -201,17 +198,16 @@ router.post('/recipe', async (req, res) => {
             dishTypes, 
             id
         }
-        // }
-        )
+        ) //busco el tipo de dieta en la bd que coincida con el valor que llega por body "diets"
             const dietType = await Diet.findAll({
               where: {name:diets},
             });
-           
+             // se lo agrego a la receta, se vincula
              await recipecreated.addDiet(dietType);
          
             res.status(200).send("Recipe created");
         
-    } else {
+    } else { 
       res.status(404).send('Please complete all fields')
     }
   }
@@ -220,6 +216,33 @@ router.post('/recipe', async (req, res) => {
   }
   
 })
+
+
+
+router.delete('/delete/:id', async (req,res) =>{
+const {id} = req.params
+try{
+  const recipe= await Recipe.destroy({
+    where: {id:id},
+  });
+  res.status(200).send("Receta eliminada")
+}
+catch(e) {
+  console.log("Error al eliminar la receta" + (e))
+}
+}) 
+
+
+
+
+
+
+
+
+
+
+
+
 
 module.exports = router;
 
