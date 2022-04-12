@@ -28,12 +28,13 @@ export default function RecipeForm() {
         setInput({
             ...input, //traigo el estado anterior y seteo cada estado
             [e.target.name]: e.target.value //con el valor de value
-
+            
         })
         setErrors(validate({
             ...input,
             [e.target.name]: e.target.value
         }))
+    
     };
 
     function handleCheck(e){
@@ -49,9 +50,12 @@ export default function RecipeForm() {
     function handleSubmit(e){
         e.preventDefault();
         console.log(input)
+       
         if(!input.title || !input.resume || !input.instructions
             || !input.score || !input.healthScore) {
+                
             alert("Please complete the fields.")
+            
         }
         else {
             dispatch(postRecipe(input))
@@ -65,7 +69,8 @@ export default function RecipeForm() {
             instructions: "", 
             dishTypes: "", 
             diets: [], 
-            id:"",
+            id:""
+   
         })
         }
         
@@ -82,7 +87,8 @@ export default function RecipeForm() {
             instructions: "", 
             dishTypes: "", 
             diets: [], 
-            id:"",
+            id:""
+
         })
     }
 
@@ -106,6 +112,7 @@ export default function RecipeForm() {
         }
         return errors;
     } 
+
 
     return (
         <div className= 'container'>
@@ -331,7 +338,7 @@ export default function RecipeForm() {
                             </div>
 
                     </div>
-                    <button type="submit">Create</button>
+                    <button type="submit" value="Submit" >Create</button>
                     </div>
                 </form>
                 </div>

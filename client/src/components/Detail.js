@@ -2,17 +2,33 @@ import React , {useEffect} from "react";
 import { useDispatch, useSelector} from "react-redux";
 import './Detail.css'
 import {Link , useParams} from 'react-router-dom'
-import { getRecipeById } from './../actions/actions';
+import { getRecipeById, cleanDetail, deleteRecipe } from './../actions/actions';
+import { useNavigate } from 'react-router-dom';
 
 export default function Detail() {
     const dispatch = useDispatch();
     const {id} = useParams()
+    const history = useNavigate()
 
-  
+   //apenas se monta el componente traigo el estado que contiene el detalle
     useEffect(()=>{dispatch(getRecipeById(id))}, [dispatch, id])
     let recipe = useSelector(state => state.detail)
     console.log(recipe)
+
+    // function handleClick(e){
+    //     e.preventDefault();  //limpio el estado del detalle al volver a home
+    //     dispatch(cleanDetail())
+    // }
    
+    function handleDelete(e){
+        e.preventDefault();
+        dispatch(deleteRecipe(recipe[0].id));
+        console.log(recipe[0].id)
+        alert("Recipe deleted");
+        history.push('/home');
+        
+    }
+
     return (
         <div>
         
@@ -27,11 +43,17 @@ export default function Detail() {
                     </Link>
                 </div>
             </div>
-           { recipe.length > 0?
-            
+           { recipe.length > 0? 
                 <div className="pages1">
+               
                 <div className="recipeDetail">
+                <div className="deleteDiv">
+                {recipe[0].created && <button 
+                className="deleteButton"
+                onClick={handleDelete}>Delete Recipe</button> }
+                </div>
                     <p className="titleDetail">{recipe[0].title}</p>
+
                     <div className="details"> 
                             <div className="dietas">
                             <label>Diets</label>
@@ -79,6 +101,18 @@ export default function Detail() {
         </div>
     )
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 // /<([^>]+)>)/ig
 

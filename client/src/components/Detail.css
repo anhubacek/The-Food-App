@@ -53,7 +53,7 @@
 
 .loading {
     font-size: 60px;
-    font-family: 'Oleo Script Swash Caps', cursive;
+    font-family: serif;
     color: rgba(246, 246, 242, 0.905);
     -webkit-text-stroke:  0,5px rgb(24, 31, 29);
     text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.45);
@@ -153,4 +153,18 @@ p{
     justify-content: center;
     margin-top: 5px;
     vertical-align: top;
+}
+
+.deleteButton{
+    width: 160px;
+    align-self: flex-end;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.deleteDiv {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: right;
 }

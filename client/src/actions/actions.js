@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export function getRecipes() {
+export function getRecipes() {  //TRAE TODAS LAS RECETAS
     return async function(dispatch) {
         try {
             const json = await axios.get('http://localhost:3001/recipes')
@@ -12,7 +12,7 @@ export function getRecipes() {
     }
 }
 
-export function getTypes(){
+export function getTypes(){ //TRAE LOS TIPOS DE DIETA
     return async function(dispatch) {
         try {
             const json = await axios.get('http://localhost:3001/types')
@@ -24,7 +24,7 @@ export function getTypes(){
     }
 }
 
-export function postRecipe(payload) {
+export function postRecipe(payload) {  //CREA LA NUEVA RECETA
     return async function() {
         try {
             const json = await axios.post('http://localhost:3001/recipe', payload)
@@ -55,7 +55,11 @@ export function orderByScore(payload) {
     return {type:"ORDER_BY_SCORE", payload}
 }
 
-export function searchByName(payload) {
+export function cleanDetail() {
+    return {type:"CLEAN_DETAIL"}
+}
+
+export function searchByName(payload) { // TRAE LA RECETA BUSCADA POR QUERY
     return async function(dispatch) {
         try {   
             const json= await axios.get('http://localhost:3001/recipes?name=' + payload)
@@ -68,7 +72,7 @@ export function searchByName(payload) {
 }
 
 
-export function getRecipeById(id){
+export function getRecipeById(id){ // TRAE LA RECETA BUSCADA POR ID
     return async function(dispatch) {
         try {
             const json = await axios.get(`http://localhost:3001/recipe/${id}`)
@@ -79,4 +83,18 @@ export function getRecipeById(id){
         }
     }
 
+}
+
+
+export function deleteRecipe(id){
+        return async function(dispatch) {
+            try {
+                await axios.delete(`http://localhost:3001/delete/${id}`)
+                console.log(id)
+                return dispatch({type: "DELETE_RECIPE"})
+            }
+            catch(e) {
+                console.log("Error al eliminar la receta" + (e))
+            }
+        }
 }

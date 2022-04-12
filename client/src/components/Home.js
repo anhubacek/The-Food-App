@@ -9,13 +9,19 @@ import { getRecipes } from './../actions/actions';
 
 export default function Home() {
     const [currentPage, setCurrentPage] = useState(1);
-    const [order, setOrder] = useState(' ');
-    const [name, setName] = useState('');
-    // const [recipesPerPage, setRecipesPerPage] = useState(9);
-    const dispatch = useDispatch()
+    //seteo la pagina actual a renderizarse en 1
 
-    function handleFoodButton(e) {
-        dispatch(getRecipes())
+    const [order, setOrder] = useState(' ');
+    //este estado me va a permitir actualizar y volver a renderizar
+    //cuando haga un cambio en los ordenamientos
+
+    const [name, setName] = useState('');
+    //este estado se lo paso a la searchbar para hacer la busqueda por nombre
+ 
+
+    const dispatch = useDispatch()
+    function handleFoodButton(e) { //con esta funcion seteo el nombre en vacio y me vuelve
+        dispatch(getRecipes())    // a renderizar todas las recetas al apretar el boton FoodApp
         setName(" ")
     }
     return (

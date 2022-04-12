@@ -12,25 +12,29 @@ export default function SearchBar({setCurrentPage, setOrder, name, setName}) {
    
 
     function handleFilterDiet(e) {
+        e.preventDefault(e);
         dispatch(filterByDiet(e.target.value));
+        setCurrentPage(1);
     }
 
     function handleFilterCreated(e) {
+        e.preventDefault(e);
         dispatch(filterCreated(e.target.value));
+        setCurrentPage(1);
     }    
 
     function handleOrderByName(e) {
         e.preventDefault(e);
         dispatch(orderByName(e.target.value));
         setCurrentPage(1);
-        setOrder("name" + e.target.value);
+        setOrder("names order:" + e.target.value);
     }
 
     function handleOrderByScore(e){
         e.preventDefault(e);
         dispatch(orderByScore(e.target.value));
         setCurrentPage(1);
-        setOrder("score" + e.target.value);
+        setOrder("scores order:" + e.target.value);
     }
 
     function handleSearchByName(e) {

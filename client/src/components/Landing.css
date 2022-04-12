@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&display=swap');
+
 
 .conteiner {
     display: flex;
@@ -14,8 +14,8 @@
 
 h1 {
     text-align: center;
-    font-family: 'Oleo Script Swash Caps', cursive;
-    font-size: 105px;
+    font-family:serif;
+    font-size: 90px;
     color: rgba(246, 246, 242, 0.905);
     /* background-color:rgba(12, 12, 12, 0.3) ; */
     -webkit-text-stroke:  0.5px rgb(24, 31, 29);
@@ -44,7 +44,7 @@ Link {
 }
 h4 {
     text-align: center;
-    font-family: 'Oleo Script Swash Caps', cursive;
+    font-family: serif;
     font-size: 80px;
     color: rgba(246, 246, 244, 0.785);
     /* background-color:rgba(12, 12, 12, 0.3) ; */

@@ -20,3 +20,25 @@
     flex-direction: column;
     justify-content: center;
 }
+
+.pages1loading {
+    display: flex;
+    width: 90%;
+    height: 800px;
+    /* background-color:  rgba(0, 0, 0, 0.097); */
+    background-color: rgba(8, 21, 16, 0.604);
+    align-self: center;
+    justify-content: center;
+    margin-top: 5px;
+    vertical-align: top;
+ 
+}
+
+.loading {
+    font-size: 60px;
+    font-family: 'Oleo Script Swash Caps', cursive;
+    color: rgba(246, 246, 242, 0.905);
+    -webkit-text-stroke:  0,5px rgb(24, 31, 29);
+    text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.45);
+    align-self: center;
+}
