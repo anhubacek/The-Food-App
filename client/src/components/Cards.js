@@ -22,7 +22,7 @@ export default function Cards({currentPage, setCurrentPage}){
         //guardo el indice de la ultima receta que va a estar en la pagina
         const lastRecipe = currentPage * recipesPerPage;
 
-        //guardo el indice de la primera receta que va a estar en la pagina
+        //guardo elindice de la primera receta que va a estar en la pagina
         const firstRecipe = lastRecipe - recipesPerPage;
 
          // guardo en currentRecipes las recetas que van en cada pagina
@@ -55,7 +55,7 @@ export default function Cards({currentPage, setCurrentPage}){
                  )
              }
              
-         ): <p className="loading">LOADING...</p> 
+         ): <p className="loading">LOADING...</p>
            }  
          
         </div>

@@ -2,30 +2,32 @@ import React , {useEffect} from "react";
 import { useDispatch, useSelector} from "react-redux";
 import './Detail.css'
 import {Link , useParams} from 'react-router-dom'
-import { getRecipeById, cleanDetail, deleteRecipe } from './../actions/actions';
+import { getRecipeById, cleanDetail, deleteRecipe, cleanRecipes } from './../actions/actions';
 import { useNavigate } from 'react-router-dom';
 
 export default function Detail() {
     const dispatch = useDispatch();
     const {id} = useParams()
-    const history = useNavigate()
+    const navigate = useNavigate();
 
    //apenas se monta el componente traigo el estado que contiene el detalle
     useEffect(()=>{dispatch(getRecipeById(id))}, [dispatch, id])
     let recipe = useSelector(state => state.detail)
     console.log(recipe)
 
-    // function handleClick(e){
-    //     e.preventDefault();  //limpio el estado del detalle al volver a home
-    //     dispatch(cleanDetail())
-    // }
+    function handleClick(e){ //para volver a home
+        e.preventDefault();  
+        dispatch(cleanDetail()) //limpio el estado del detalle 
+        navigate('/home'); //redirecciono a home
+    }
    
-    function handleDelete(e){
+    function handleDelete(e){//  para borrar
         e.preventDefault();
-        dispatch(deleteRecipe(recipe[0].id));
+        dispatch(deleteRecipe(recipe[0].id));  //elimino la receta del id
         console.log(recipe[0].id)
-        alert("Recipe deleted");
-        history.push('/home');
+        alert("Recipe deleted"); 
+        dispatch(cleanRecipes()) //limpio el estado de las recetas para q no aparezca la eliminada
+        navigate('/home'); //redirecciono a home
         
     }
 
@@ -34,7 +36,7 @@ export default function Detail() {
         
         <div className= 'container1'>
             <div className ='nav'>
-                <Link to='/home' >
+                <Link to='/home' onClick={handleClick}>
                 <div className='title'> <h2>The Food App</h2></div>
                 </Link>
                 <div className='links'>

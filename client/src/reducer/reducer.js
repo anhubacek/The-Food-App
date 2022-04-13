@@ -95,11 +95,16 @@ export default function rootReducer (state=initialState, action){
         ...state,
         detail: []
       }
-    // case 'DELETE_RECIPE':
-    //   return {
-    //     ...state,
-    //     recipes: state.recipes
-    //   }
+    case 'DELETE_RECIPE':
+      return {
+        ...state,
+        recipes: []
+      }
+      case 'CLEAN_RECIPES':  //limpio el estado de las recetas
+      return {
+        ...state,
+        recipes: []
+      }
     default: return state;
   }; 
  

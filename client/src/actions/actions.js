@@ -59,6 +59,11 @@ export function cleanDetail() {
     return {type:"CLEAN_DETAIL"}
 }
 
+export function cleanRecipes() {
+    return {type:"CLEAN_RECIPES"}
+}
+
+
 export function searchByName(payload) { // TRAE LA RECETA BUSCADA POR QUERY
     return async function(dispatch) {
         try {   
