@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export function getRecipes() {  //TRAE TODAS LAS RECETAS
+export function getRecipes() {  //TRE LAS RECETAS
     return async function(dispatch) {
         try {
             const json = await axios.get('http://localhost:3001/recipes')
@@ -11,6 +11,9 @@ export function getRecipes() {  //TRAE TODAS LAS RECETAS
         }
     }
 }
+
+
+
 
 export function getTypes(){ //TRAE LOS TIPOS DE DIETA
     return async function(dispatch) {
@@ -102,4 +105,8 @@ export function deleteRecipe(id){
                 console.log("Error al eliminar la receta" + (e))
             }
         }
+}
+
+export function mostPopular(){
+    return {type:"MOST_POPULAR"}
 }

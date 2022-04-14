@@ -48,6 +48,7 @@ export default function Cards({currentPage, setCurrentPage}){
                     {/* al clickear me dirige a la ruta con el id de cada receta */}
                     <Card title={e.title} 
                     diets={e.diets? e.diets: "No diet type."} 
+                    // score={e.score}
                     image={e.image? e.image: "https://media.istockphoto.com/photos/blank-recipe-book-on-wooden-table-picture-id481482102?b=1&k=20&m=481482102&s=170667a&w=0&h=68rhfYQV0RU3JLXrF6T1T7tWQQ4nzb24fMZ-KxBy8Hk="} key={e.id}/> 
                         {/* seteo una imagen por default en caso de que no se agregue una al crear la receta */}
                                       
@@ -55,7 +56,7 @@ export default function Cards({currentPage, setCurrentPage}){
                  )
              }
              
-         ): <p className="loading">LOADING...</p>
+         ): <p className="loading">...</p>
            }  
          
         </div>

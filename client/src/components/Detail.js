@@ -1,4 +1,4 @@
-import React , {useEffect} from "react";
+import React , {useEffect, useState} from "react";
 import { useDispatch, useSelector} from "react-redux";
 import './Detail.css'
 import {Link , useParams} from 'react-router-dom'
@@ -12,6 +12,10 @@ export default function Detail() {
 
    //apenas se monta el componente traigo el estado que contiene el detalle
     useEffect(()=>{dispatch(getRecipeById(id))}, [dispatch, id])
+
+
+
+
     let recipe = useSelector(state => state.detail)
     console.log(recipe)
 
@@ -45,7 +49,8 @@ export default function Detail() {
                     </Link>
                 </div>
             </div>
-           { recipe.length > 0? 
+           { 
+               recipe.length > 0? 
                 <div className="pages1">
                
                 <div className="recipeDetail">
@@ -95,7 +100,7 @@ export default function Detail() {
 
             : 
             <div className="pages1loading">
-            <p className="loading">LOADING...</p> 
+            <p className="loading">...</p> 
             </div>}
             </div>
          

@@ -54,7 +54,7 @@
 
 h2 {
     text-align: center;
-    font-family: serif;
+    font-family: 'Oleo Script Swash Caps', cursive;
     font-size: 65px;
     color: rgba(246, 246, 242, 0.994);
     /* background-color:rgba(12, 12, 12, 0.3) ; */
@@ -69,7 +69,7 @@ h2:hover {
 
 h5 {
     text-align: center;
-    font-family: serif;
+    font-family: 'Oleo Script Swash Caps', cursive;
     font-size: 40px;
     color: rgb(246, 246, 244);
     /* background-color:rgba(12, 12, 12, 0.3) ; */

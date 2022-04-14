@@ -14,7 +14,7 @@
 
 h1 {
     text-align: center;
-    font-family:serif;
+    font-family:'Oleo Script Swash Caps', cursive;
     font-size: 90px;
     color: rgba(246, 246, 242, 0.905);
     /* background-color:rgba(12, 12, 12, 0.3) ; */
@@ -44,7 +44,7 @@ Link {
 }
 h4 {
     text-align: center;
-    font-family: serif;
+    font-family: 'Oleo Script Swash Caps', cursive;
     font-size: 80px;
     color: rgba(246, 246, 244, 0.785);
     /* background-color:rgba(12, 12, 12, 0.3) ; */

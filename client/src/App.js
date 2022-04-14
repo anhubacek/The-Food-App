@@ -26,13 +26,14 @@ function App() {
             element= {<RecipeForm/>} 
             />  
              <Route 
-             path='/detail/:id'
+              path='/detail/:id'
             element= {<Detail/>} 
             /> 
             <Route 
              path='*'
             element= {<ErrorPage/>} 
             />  
+         
       </Routes>
   </BrowserRouter>
 

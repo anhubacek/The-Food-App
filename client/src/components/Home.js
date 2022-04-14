@@ -22,7 +22,6 @@ export default function Home() {
     const dispatch = useDispatch()
     function handleFoodButton(e) { //con esta funcion seteo el nombre en vacio y me vuelve
         dispatch(getRecipes())    // a renderizar todas las recetas al apretar el boton FoodApp
-        setName(" ")
     }
     return (
         <div className= 'container'>

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { filterByDiet, searchByName } from "../actions/actions";
 import { filterCreated } from "../actions/actions";
 import { orderByName } from "../actions/actions";
-import { orderByScore } from './../actions/actions';
+import { orderByScore, mostPopular } from './../actions/actions';
 
 
 export default function SearchBar({setCurrentPage, setOrder, name, setName}) {
@@ -28,7 +28,7 @@ export default function SearchBar({setCurrentPage, setOrder, name, setName}) {
         dispatch(orderByName(e.target.value));
         setCurrentPage(1);
         setOrder("names order:" + e.target.value);
-    }
+    }  //setOrder me permite volver a renderizar cuando cambio los ordenamientos
 
     function handleOrderByScore(e){
         e.preventDefault(e);
@@ -40,20 +40,25 @@ export default function SearchBar({setCurrentPage, setOrder, name, setName}) {
     function handleSearchByName(e) {
         e.preventDefault(e);
         dispatch(searchByName(name))
-        setName(" ")
-        
+        setName(" ") //limpio el input de busqueda
     }
 
     function handleInputChange(e){
         setName(e.target.value)
 
     }    
+
+    function handleScoreButton(e){
+        e.preventDefault()
+        dispatch(mostPopular())
+    }
     
     return (
         <div className= 'containerbar'>
             <input className='input' autoComplete="false" value={name}
             onChange={handleInputChange} placeholder="Recipe Name"/>
             <button type="submit" onClick={handleSearchByName}>Search</button>
+            <button className="popular" onClick={handleScoreButton}>Most Popular</button>
             <select onChange={handleOrderByName} className="az">
                  <option >Order</option>
                 <option value="A-Z">A - Z</option>

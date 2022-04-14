@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import './Home.css'
 import {Link} from 'react-router-dom'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { postRecipe, getTypes } from "../actions/actions";
 import './RecipeForm.css'
 import { useNavigate } from 'react-router-dom';
@@ -11,6 +11,7 @@ export default function RecipeForm() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     useEffect(()=> {dispatch(getTypes())}, []);
+    const types = useSelector(state => state.types)
 
     const [input, setInput] = useState({
         title: "",
@@ -25,13 +26,16 @@ export default function RecipeForm() {
     });
 
     const [errors, setErrors] = useState({});
+   
 
     function handleChange(e){
         setInput({
             ...input, //traigo el estado anterior y seteo cada estado
             [e.target.name]: e.target.value //con el valor de value
             
+            
         })
+        
         setErrors(validate({
             ...input,
             [e.target.name]: e.target.value
@@ -39,15 +43,19 @@ export default function RecipeForm() {
     
     };
 
-    function handleCheck(e){
+
+    function handleCheck(d){
         console.log(input)
-        if (e.target.checked){
+        if (d.target.checked){
+            
             setInput({
                 ...input,
-                diets: [...input.diets, e.target.value]
+                diets: [...input.diets, d.target.value]
             });
         } 
     };
+
+
 
     function handleSubmit(e){
         e.preventDefault();
@@ -93,6 +101,7 @@ export default function RecipeForm() {
             id:""
 
         })
+        
     }
 
     function validate(input) {
@@ -226,9 +235,6 @@ export default function RecipeForm() {
                                     onChange={handleChange}
                                     placeholder="Breakfast, Dinner, Lunch, etc.."
                                 />
-                                {/* {errors.healthScore && (
-                        <p className="error">{errors.healthScore}</p>
-                    )} */}
                                 </div>
 
 
@@ -238,104 +244,20 @@ export default function RecipeForm() {
 
                             <label>Diets</label>
 
-                            <div className="dietInput">
-                                <span>Dairy Free</span>
+                            { types?.map(e => (
+                                 <div className="dietInput">
+                                <span>{e.name}</span>
                                 <input
+                                    key={e.name}
                                     type="checkbox"
-                                    value="dairy free"
-                                    name="dairy free"
+                                    value={e.name}
+                                    name={e.name}
                                     className="checkboxInput"
-                                    onChange={handleCheck}
+                                    onChange={d => {handleCheck(d)}}
                                 />
                             </div>
-
-                            <div className="dietInput">
-                                <span>Lacto Ovo Vegetarian</span>
-                                <input
-                                    type="checkbox"
-                                    value="lacto ovo vegetarian"
-                                    name="lacto ovo vegetarian"
-                                    className="checkboxInput"
-                                    onChange={handleCheck}
-                                />
-                            </div>
-                        
-                            <div className="dietInput">
-                                <span>Vegan</span>
-                                <input
-                                    type="checkbox"
-                                    value="vegan"
-                                    name="vegan"
-                                    className="checkboxInput"
-                                    onChange={handleCheck}
-                                />
-                            </div>
-
-                            <div className="dietInput">
-                                <span>Gluten Free</span>
-                                <input
-                                    type="checkbox"
-                                    value="gluten free"
-                                    name="gluten free"
-                                    className="checkboxInput"
-                                    onChange={handleCheck}
-                                />
-                            </div>
-
-                            <div className="dietInput">
-                                <span>Pescatarian</span>
-                                <input
-                                    type="checkbox"
-                                    value="pescatarian"
-                                    name="pescatarian"
-                                    className="checkboxInput"
-                                    onChange={handleCheck}
-                                />
-                            </div>
-
-                            <div className="dietInput">
-                                <span>Paleolithic</span>
-                                <input
-                                    type="checkbox"
-                                    value="paleolithic"
-                                    name="paleolithic"
-                                    className="checkboxInput"
-                                    onChange={handleCheck}
-                                />
-                            </div>
-
-                            <div className="dietInput">
-                                <span>Primal</span>
-                                <input
-                                    type="checkbox"
-                                    value="primal"
-                                    name="primal"
-                                    className="checkboxInput"
-                                    onChange={handleCheck}
-                                />
-                            </div>
-
-                            <div className="dietInput">
-                                <span>Fodmap Friendly</span>
-                                <input
-                                    type="checkbox"
-                                    value="fodmap friendly"
-                                    name="fodmap friendly"
-                                    className="checkboxInput"
-                                    onChange={handleCheck}
-                                />
-                            </div>
-
-                            <div className="dietInput">
-                                <span>Whole 30</span>
-                                <input
-                                    type="checkbox"
-                                    value="whole 30"
-                                    name="whole 30"
-                                    className="checkboxInput"
-                                    onChange={handleCheck}
-                                />
-                            </div>
+                                )
+                            )}
 
                
                             </div>
@@ -352,6 +274,25 @@ export default function RecipeForm() {
         </div>
     )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // let regexName = /^\b[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/

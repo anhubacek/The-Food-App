@@ -12,6 +12,7 @@ export default function Card ({title, image, diets, id}) {
                     <img src={image} alt=' ' className="recipeImage" />
                     </div>
                 <p className="dietcard">{diets}</p>
+                {/* <p>{score}</p> */}
             </div>
     
         </div>

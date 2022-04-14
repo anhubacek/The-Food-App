@@ -56,7 +56,9 @@ button:hover {
     color: rgb(4, 13, 9);
     cursor: pointer;
 }
-
+.popular{
+    width: 160px;
+}
 option {
     font-size: 15px;
 }

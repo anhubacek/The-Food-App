@@ -95,8 +95,8 @@ export default function rootReducer (state=initialState, action){
         ...state,
         detail: []
       }
-    case 'DELETE_RECIPE':
-      return {
+    case 'DELETE_RECIPE': //limpio el estado de las recetas despues de eliminar
+      return {            // para que no aparezca la eliminada cuando vuelvo a home
         ...state,
         recipes: []
       }
@@ -104,6 +104,19 @@ export default function rootReducer (state=initialState, action){
       return {
         ...state,
         recipes: []
+      }
+      case'MOST_POPULAR':
+      const allRecipes5 = state.allRecipes
+      allRecipes5.sort(function (a,b) {
+        if (a.score > b.score)  return -1;
+        else if (a.score < b.score) return 1;
+        else return 0;
+      });  
+      const mostPopular = allRecipes5[0]
+      console.log(mostPopular)
+      return {
+        ...state,
+        recipes: [mostPopular]
       }
     default: return state;
   }; 
