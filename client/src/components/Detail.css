@@ -1,6 +1,6 @@
 .recipeDetail {
     display: flex;
-    width: 90%;
+    width: 80%;
     flex-direction:column;
     justify-content:center;
     background-color: rgba(8, 21, 16, 0.604);
@@ -10,6 +10,7 @@
     align-self: center;
     border-radius: 50px;
     vertical-align: top;
+    margin-top: 30px;
 }
 
 .container1 {
@@ -26,7 +27,7 @@
 
 .pages1 {
     display: flex;
-    width: 90%;
+    width: 100%;
     height: 100%;
     /* background-color:  rgba(0, 0, 0, 0.097); */
     background-color: rgba(8, 21, 16, 0.604);
@@ -39,7 +40,7 @@
 
 .pages1loading {
     display: flex;
-    width: 90%;
+    width: 100%;
     height: 800px;
     /* background-color:  rgba(0, 0, 0, 0.097); */
     background-color: rgba(8, 21, 16, 0.604);
@@ -145,7 +146,7 @@ p{
 
 .pageserror{
     display: flex;
-    width: 90%;
+    width: 100%;
     height: 800px;
     /* background-color:  rgba(0, 0, 0, 0.097); */
     background-color: rgba(8, 21, 16, 0.604);

@@ -16,11 +16,11 @@
     justify-content: space-around;
     align-items: center;
     align-self: center;
-    width: 90%;
+    width: 100%;
     height: 100px;
     /* background-color:  rgba(0, 0, 0, 0.197); */
 
-    background-color: rgba(8, 21, 16, 0.604);
+    background-color: rgba(8, 21, 16, 0.501);
     /* background-image: url('../images/nav.jpg');  */
     color:black
 }
@@ -29,21 +29,21 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 90%;
+    width: 100%;
     height: 100%;
     /* background-color:  rgba(0, 0, 0, 0.197); */
 
-    background-color: rgba(8, 21, 16, 0.604);
+    background-color: rgba(8, 21, 16, 0.501);
     align-self: center;
     margin-top: 5px;
  
 }
 
 .searchbar {
-    width: 90%;
+    width: 100%;
     height: 70px;
     /* background-color:   rgba(0, 0, 0, 0.305); */
-    background-color: rgba(8, 21, 16, 0.604);
+    background-color: rgba(8, 21, 16, 0.501);
 
     align-self: center;
     margin-top: 5px;

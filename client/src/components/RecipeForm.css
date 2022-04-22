@@ -2,20 +2,39 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: rgba(8, 21, 16, 0.604);
 }
+ 
+.pagesinside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+ 
+    background-color: rgba(8, 21, 16, 0.604);
+    margin-top: 30px;
+   
+    border-radius: 50px;
+} 
 
-label {
+.labelform {
     width:fit-content;
-    padding: 5px;
+    padding: 6px;
+    padding-left: 2;
+    padding-right: 2;
     font-size: 20px;
     font-family: serif;
     text-align: center;
     font-family:serif;
-    color: rgb(17, 22, 21);
-     background-color:rgba(246, 246, 246, 0.63) ;  
+    /* color: beige; */
+     /* background-color:rgba(246, 246, 246, 0.496) ;   */
+     /* background-color: rgba(8, 21, 16, 0.544); */
+     color: rgb(17, 22, 21);
+     background-color:rgba(246, 246, 246, 0.926) ;
     border-radius: 30px;
     letter-spacing: 2px;
     font-weight: 800;
+    margin-bottom: 3px;
 }
 
 .input {
@@ -68,9 +87,10 @@ button {
     background-color: rgba(8, 21, 16, 0.904);
     color: beige;
     margin-right: 30px;
-    font-size: 18px;
+    font-size: 16px;
     letter-spacing: 2px;
     justify-self: center;
+     font-weight: bold;
 }
 
 .scoresAndDiets {
@@ -135,5 +155,5 @@ span {
 
 }
 .container {
-    height: 1500px;
+    height: 1600px;
 }

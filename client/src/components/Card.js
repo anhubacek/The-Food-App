@@ -4,17 +4,21 @@ import './Card.css'
 
 export default function Card ({title, image, diets, id}) {
     return(
-        <div className='cardContainer'>
+       
 
             <div className='cardContainer'>
+            <div className="divtitle">
                 <p className="title">{title}</p>
-                    <div className= 'imgContainer'>
+                </div>
+                    <div className= 'divimage'>
                     <img src={image} alt=' ' className="recipeImage" />
                     </div>
+                    <div className="divdieta">
                 <p className="dietcard">{diets}</p>
-                {/* <p>{score}</p> */}
+                </div>
+               
             </div>
     
-        </div>
+       
     )
 }

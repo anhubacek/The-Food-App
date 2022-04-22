@@ -134,11 +134,12 @@ export default function RecipeForm() {
                 </Link>
             </div>
             <div className='pages'>
+            <div className="pagesinside">
                 <h5 onClick={handleCleanFields}>Create your own recipe!</h5>
                 <div className="form">
                 <form onSubmit={handleSubmit}>
                     <div className="input">
-                    <label>Title</label>
+                    <label className="labelform">Title</label>
                     <input
                         type="text"
                         value={input.title}
@@ -153,7 +154,7 @@ export default function RecipeForm() {
 
                     </div>
                     <div className="input">
-                     <label>Resume</label>
+                     <label className="labelform" >Resume</label>
                     <textarea
                         type="text"
                         value={input.resume}
@@ -167,7 +168,7 @@ export default function RecipeForm() {
                     )}
                     </div>
                     <div className="input">
-                    <label>Instructions</label>
+                    <label className="labelform" >Instructions</label>
                     <textarea
                         type="text"
                         value={input.instructions}
@@ -181,7 +182,7 @@ export default function RecipeForm() {
 
                     </div>
                     <div className="input">
-                    <label>Image URL</label>
+                    <label className="labelform" >Image URL</label>
                     <input
                         type="text"
                         value={input.image}
@@ -194,7 +195,7 @@ export default function RecipeForm() {
                     <div className="scoresAndDiets">
                             <div className="scores">
                                 <div className="input">
-                                <label>Score</label>
+                                <label className="labelform">Score</label>
                                 <input
                                     type="number"
                                     value={input.score}
@@ -209,7 +210,7 @@ export default function RecipeForm() {
                     )}
                                 </div>
                                 <div className="input">
-                                <label>Health</label>
+                                <label className="labelform"> Health </label>
                                 <input
                                     type="number"
                                     value={input.healthScore}
@@ -226,7 +227,7 @@ export default function RecipeForm() {
 
 
                                 <div className="input">
-                                <label>Dish Type</label>
+                                <label className="labelform"> Dish Type </label>
                                 <input
                                     type="text"
                                     value={input.dishTypes}
@@ -242,7 +243,7 @@ export default function RecipeForm() {
 
                             <div className="diets">
 
-                            <label>Diets</label>
+                            <label className="labelform"> Diets </label>
 
                             { types?.map(e => (
                                  <div className="dietInput">
@@ -270,7 +271,7 @@ export default function RecipeForm() {
             </div>
             
 
-
+            </div>
         </div>
     )
 }
