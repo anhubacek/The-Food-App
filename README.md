@@ -6,7 +6,7 @@
 
 Proyecto individual realizado en Henry Bootcamp en el cual se espera que un alumno integre todo lo aprendido mediante el desarrollo de una web con consumo de API. 
 
-Esta plataforma permite a los usuarios buscar recetas por nombre, filtrar por tipo de dieta, y ordenarlas alfabeticamente o por puntuación. También pueden crearse nuevas recetas mediante un formulario controlado. 
+Esta plataforma permite a los usuarios buscar recetas por nombre, filtrar por tipo de dieta, y ordenarlas alfabeticamente o por puntuación. También pueden crearse nuevas recetas mediante un formulario controlado. La API utilizada fue Spoonacular. 
 
 
 Tecnologias utilizadas:
